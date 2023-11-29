@@ -1,12 +1,19 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import InputCheckbox from "../Login/components/InputCheckbox";
 import { PSW_REGEX } from "./Register";
+import SelectCountry from "./components/SelectCountry";
 
 export default function SignUp() {
   const [inputs, setInputs] = useState({});
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [repeatPassword, setRepeatPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+
+  const disabledCheck =
+    password && repeatPassword && password !== repeatPassword;
+
   const handleChange = (event) => {
     const name = event.target.name;
     const value = event.target.value;
@@ -17,29 +24,30 @@ export default function SignUp() {
     //validar en la base de datos si ya hay un email registrado
     setEmail(value);
   };
-  const checkPassword = (event) => {
-    const value = event.target.value;
-    const validate = PSW_REGEX.test(value);
-    if (!validate) {
-      console.log("no cumple con la expresion regular");
-    } else {
-      setPassword(value);
-    }
+  const checkPassword = (e) => {
+    setPassword(e.target.value);
+    // const value = e.target.value;
+    // const validate = PSW_REGEX.test(value);
+    // if (!validate) {
+    //   return console.log("contraseña no valida");
+    // } else {
+    //   setPassword(value);
+    // }
     //validar que tenga al menos 8 caracteres, una mayuscula, una minuscula y un numero
   };
-  useEffect(() => {
-    console.log(inputs);
-  }, [inputs]);
-
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log("submit");
-    console.log(inputs);
+    if (!PSW_REGEX.test(password)) {
+      setErrorMessage(
+        "La contraseña debe tener al menos 8 caracteres, una minúscula, una mayúscula, un número y un caracter especial"
+      );
+      return;
+    }
   };
 
   return (
     <div className='flex flex-col w-100 h-screen justify-center items-center space-y-2'>
-      <section className='border flex flex-col w-fit h-96 justify-evenly px-6 py-4'>
+      <section className='border flex flex-col w-fit h-fit justify-evenly px-6 py-4'>
         <h1 className=' self-center text-lg font-bold'>Crea tu cuenta</h1>
         <div className='flex flex-row justify-around w-4/5 mx-auto'>
           <button className='border rounded bg-pink-300 px-4 py-1'>
@@ -82,6 +90,10 @@ export default function SignUp() {
               required
             />
           </label>
+          <label htmlFor='usercountry' className=' self-start  space-x-4'>
+            <p className='inline w-1/4'>País</p>
+            <SelectCountry />
+          </label>
           <label htmlFor='useremail' className=' self-start  space-x-4'>
             <p className='inline w-1/4'>Email</p>
             <input
@@ -106,14 +118,17 @@ export default function SignUp() {
               required
             />
           </label>
+          {}
           <label htmlFor='repeatUserpassword' className='self-start  space-x-4'>
             <p className='inline'>Repite Password</p>
             <input
               id='repeatUserpassword'
               name='repeatUserpassword'
               type={showPassword ? "text" : "password"}
-              value={inputs.repeatUserpassword || ""}
-              onChange={handleChange}
+              value={repeatPassword || ""}
+              onChange={(e) => {
+                setRepeatPassword(e.target.value);
+              }}
               className='border-b border-blue-500 outline-0 focus:border-pink-500'
               required
             />
@@ -124,10 +139,21 @@ export default function SignUp() {
           />
           <button
             type='submit'
-            className='rounded-lg bg-blue-500 hover:bg-blue-400 transition-all text-white w-32 px-4 py-1'
+            className='rounded-lg bg-blue-500 hover:bg-blue-400 transition-all text-white w-32 px-4 py-1 disabled:opacity-75 disabled:cursor-default disabled:hover:bg-blue-500'
+            {...(disabledCheck && { disabled: true })}
           >
             Registrar
           </button>
+          {errorMessage && (
+            <p className='error text-sm text-slate-500 text-center'>
+              {errorMessage}
+            </p>
+          )}
+          {disabledCheck && (
+            <p className='error text-sm text-slate-500'>
+              Las contraseñas no coinciden
+            </p>
+          )}
         </form>
       </section>
     </div>
