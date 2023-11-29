@@ -19,6 +19,6 @@ const serviceSchema = new Schema({
     },
 });
 
-const ServiceModel = model('service', serviceSchema);
+const serviceModel = model('service', serviceSchema);
 
-module.exports = ServiceModel
+module.exports = serviceModel
