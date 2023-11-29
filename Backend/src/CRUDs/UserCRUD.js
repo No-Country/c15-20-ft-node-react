@@ -2,12 +2,12 @@ const userModel = require("../database/models/userModel.js");
 
 async function createUser(user) {
   try {
-      const newUser = await userModel.create(user);
-      return newUser;
+    const newUser = await userModel.create(user);
+    return newUser;
   } catch (error) {
-      return error;
-  };
-};
+    return error;
+  }
+}
 
 const findUsers = async () => {
   try {
@@ -15,16 +15,16 @@ const findUsers = async () => {
     return userList;
   } catch (error) {
     return error;
-  };
+  }
 };
 
 const findUserByEmail = async (email) => {
   try {
-    const result = userModel.findOne({email: email});
+    const result = userModel.findOne({ email: email });
     return result;
   } catch (error) {
     return error;
-  };
+  }
 };
 
 const findUserById = async (id) => {
@@ -54,7 +54,7 @@ const findUserById = async (id) => {
 
 const deleteUserById = async (id) => {
   try {
-    const result = await userModel.deleteOne({_id : id});
+    const result = await userModel.deleteOne({ _id: id });
     return result;
   } catch (error) {
     return error;
@@ -63,7 +63,10 @@ const deleteUserById = async (id) => {
 
 const updateUser = async (id, data) => {
   try {
-    const result= await userModel.updateOne({_id : id}, {$set : {...data}});
+    const result = await userModel.updateOne(
+      { _id: id },
+      { $set: { ...data } }
+    );
     return result;
   } catch (error) {
     return error;
