@@ -13,13 +13,16 @@ const productSchema = new Schema({
         type: String,
         required: true
     },
-    tags: [{
-        body: {
-            type: string,
+    tags: [
+        {
+            type: String,
             required: true
         }
-    }],
-    price: Number,
+    ],
+    price: {
+        type: Number,
+        required: true
+    },
 });
 
 const productModel = model('product', productSchema);

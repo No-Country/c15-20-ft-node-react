@@ -1,4 +1,4 @@
-const serviceModel = require("./database/models/serviceModel.js");
+const serviceModel = require("../database/models/serviceModel.js");
 
 async function createService(service) {
   try {
