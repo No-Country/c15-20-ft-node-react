@@ -1,51 +1,6 @@
 import { useState } from "react";
 import InputCheckbox from "./components/InputCheckbox";
 
-const PREDEFINEDUSER = {
-  useremail: "usuario@ejemplo.com",
-  userpassword: "contraseña",
-};
-// const express = require('express');
-// const bcrypt = require('bcrypt');
-// const jwt = require('jsonwebtoken');
-// const User = require('./models/User'); // Asume que tienes un modelo de usuario
-
-// const app = express();
-
-// app.use(express.json());
-
-// app.post('/register', async (req, res) => {
-//   const hashedPassword = await bcrypt.hash(req.body.password, 10);
-//   const user = new User({
-//     username: req.body.username,
-//     password: hashedPassword,
-//   });
-//   await user.save();
-//   res.sendStatus(201);
-// });
-
-// app.post('/login', async (req, res) => {
-//   const user = await User.findOne({ username: req.body.username });
-//   if (user && await bcrypt.compare(req.body.password, user.password)) {
-//     const token = jwt.sign({ id: user._id }, 'secret key', { expiresIn: '1h' });
-//     res.json({ token });
-//   } else {
-//     res.sendStatus(401);
-//   }
-// });
-
-// app.get('/profile', async (req, res) => {
-//   const authHeader = req.headers['authorization'];
-//   const token = authHeader && authHeader.split(' ')[1];
-//   if (!token) return res.sendStatus(401);
-//   jwt.verify(token, 'secret key', (err, user) => {
-//     if (err) return res.sendStatus(403);
-//     res.json({ id: user.id });
-//   });
-// });
-
-// app.listen(3000);
-
 export default function Login() {
   const [inputs, setInputs] = useState({});
   const [showPassword, setShowPassword] = useState(false);
@@ -56,29 +11,47 @@ export default function Login() {
   };
   const handleSubmit = async (event) => {
     event.preventDefault();
-    // const response = await fetch('http://localhost:3000/login', {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //   },
-    //   body: JSON.stringify(inputs),
-    // });
-    // if (response.ok) {
-    //   const { token } = await response.json();
-    //   localStorage.setItem('authToken', token);
-    // } else {
-    //   alert('Error: Las credenciales de usuario no son correctas');
-    // }
-    alert(inputs.useremail + " " + inputs.userpassword);
-    if (
-      inputs.useremail === PREDEFINEDUSER.useremail &&
-      inputs.userpassword === PREDEFINEDUSER.userpassword
-    ) {
-      alert("Inicio de sesión exitoso");
-    } else {
-      alert("Error: Las credenciales de usuario no son correctas");
-    }
+
+    fetch("http://localhost:3001/users/login/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email: inputs.useremail,
+        password: inputs.userpassword,
+      }),
+    }).then((response) => {
+      if (!response) {
+        console.log(response);
+        alert("Error al registrar usuario");
+      } else {
+        alert("Usuario registrado");
+      }
+    });
   };
+  // const response = await fetch('http://localhost:3000/login', {
+  //   method: 'POST',
+  //   headers: {
+  //     'Content-Type': 'application/json',
+  //   },
+  //   body: JSON.stringify(inputs),
+  // });
+  // if (response.ok) {
+  //   const { token } = await response.json();
+  //   localStorage.setItem('authToken', token);
+  // } else {
+  //   alert('Error: Las credenciales de usuario no son correctas');
+  // }
+  // alert(inputs.useremail + " " + inputs.userpassword);
+  // if (
+  //   inputs.useremail === PREDEFINEDUSER.useremail &&
+  //   inputs.userpassword === PREDEFINEDUSER.userpassword
+  // ) {
+  //   alert("Inicio de sesión exitoso");
+  // } else {
+  //   alert("Error: Las credenciales de usuario no son correctas");
+  // }
 
   return (
     <div className='flex flex-col w-100 h-screen justify-center items-center space-y-2'>
