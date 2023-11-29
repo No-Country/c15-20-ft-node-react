@@ -14,6 +14,16 @@ router.get("/", async (req, res) => {
     res.status(200).json(userList);
 });
 
+router.get("/:id", async (req, res) => {
+    await connectDb();
+
+    const {id} = req.params;
+
+    const foundUser = await ServiceCRUD.findServices(id);
+
+    res.status(200).json(foundUser);
+});
+
 router.post("/", async (req, res) => {
     await connectDb();
 
