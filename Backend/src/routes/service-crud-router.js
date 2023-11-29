@@ -9,9 +9,9 @@ router.use(express.json());
 router.get("/", async (req, res) => {
     await connectDb();
 
-    const userList = await ServiceCRUD.findServices();
+    const serviceList = await ServiceCRUD.findServices();
 
-    res.status(200).json(userList);
+    res.status(200).json(serviceList);
 });
 
 router.get("/:id", async (req, res) => {

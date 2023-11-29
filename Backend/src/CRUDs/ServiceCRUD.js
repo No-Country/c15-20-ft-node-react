@@ -1,4 +1,3 @@
-const { read } = require("fs");
 const serviceModel = require("../database/models/serviceModel.js");
 
 async function createService(service) {

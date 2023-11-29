@@ -4,11 +4,22 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const serviceRouter = require("./routes/service-crud-router");
 const productRouter = require("./routes/product-crud-router");
+const userRouter = require("./routes/user-crud-router");
+
+const authVerification = (req, res, next) => {
+    acessToken = req.headers["authorization"];
+    if (!acessToken) res.status(403).send("No te has autenticado");
+
+    jwt.verify(acessToken, process.env.SECRET_KEY, (err, user) => {
+        err ? res.status(403).send("Acceso denegado") : next();
+    });
+};
 
 const app = express();
 
 app.use("/services", serviceRouter);
-app.use("/products", productRouter);
+app.use("/products", authVerification, productRouter);
+app.use("/users", userRouter);
 
 app.use(express.json());
 
