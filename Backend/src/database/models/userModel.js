@@ -9,6 +9,10 @@ const userSchema = new Schema({
         type: String,
         required: true
     },
+    country: {
+        type: String,
+        required: true
+    },
     email: {
         type: String,
         required: true
@@ -17,7 +21,17 @@ const userSchema = new Schema({
         type: String,
         required: true
     },
+    shoppingCart: [
+        {
+            type: Object,
+        }
+    ],
     products: [
+        {
+            type: Object,
+        }
+    ],
+    services: [
         {
             type: Object,
         }
