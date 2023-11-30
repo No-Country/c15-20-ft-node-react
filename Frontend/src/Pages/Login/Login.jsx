@@ -1,5 +1,6 @@
 import { useState } from "react";
 import InputCheckbox from "./components/InputCheckbox";
+import { Link } from "react-router-dom";
 
 export default function Login() {
   const [inputs, setInputs] = useState({});
@@ -25,28 +26,12 @@ export default function Login() {
       });
       const data = await response.json();
       alert("Ingresaste!");
+      localStorage.setItem("authToken", data.token);
       console.log(data);
     } catch (error) {
       console.error("Error:", error);
       setShowError(true);
     }
-    // fetch("http://localhost:3001/users/login/", {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify({
-    //     email: inputs.useremail,
-    //     password: inputs.userpassword,
-    //   }),
-    // }).then((response) => {
-    //   if (!response) {
-    //     console.log(response);
-    //     alert("Error. Usuario no registrado");
-    //   } else {
-    //     alert("Ingresaste!");
-    //   }
-    // });
   };
 
   return (
@@ -109,13 +94,15 @@ export default function Login() {
           </button>
         </div>
         <p className=' cursor-pointer text-blue-400 self-center'>
-          ¿Has olvidado la contraseña?
+          <Link to='/recover'>¿Has olvidado la contraseña?</Link>
         </p>
       </section>
       <section className='border flex flex-col w-80 items-center p-4'>
         <p>
           ¿No tienes una cuenta?{" "}
-          <span className=' cursor-pointer text-blue-400'>Regístrate</span>
+          <span className=' cursor-pointer text-blue-400'>
+            <Link to='/signup'>Regístrate</Link>
+          </span>
         </p>
       </section>
     </div>
