@@ -1,7 +1,7 @@
 import { useState } from "react";
 import InputCheckbox from "../Login/components/InputCheckbox";
 import { PSW_REGEX } from "../SignUp/Register";
-const USUARIO = "usuario@ejemplo.com";
+const USUARIO = "admin@admin.com";
 
 export default function UpdatePassword({ email = USUARIO }) {
   const [password, setPassword] = useState("");
@@ -11,13 +11,33 @@ export default function UpdatePassword({ email = USUARIO }) {
   const disabledCheck =
     password && repeatPassword && password !== repeatPassword;
   const validate = !PSW_REGEX.test(password);
-  const handleUpdatePassword = (event) => {
+  const handleUpdatePassword = async (event) => {
     event.preventDefault();
-    if (!PSW_REGEX.test(password)) {
-      setErrorMessage(
-        "La contraseña debe tener al menos 8 caracteres, una minúscula, una mayúscula, un número y un caracter especial"
+    try {
+      const response = await fetch(
+        "http://localhost:3001/users/change-password/",
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email: email,
+            password: password,
+          }),
+        }
       );
-      return;
+      if (response.ok) {
+        const data = await response.json();
+        console.log(data);
+        alert("Contraseña actualizada!");
+      } else {
+        setErrorMessage(
+          "La contraseña debe tener al menos 8 caracteres, una minúscula, una mayúscula, un número y un caracter especial"
+        );
+      }
+    } catch (error) {
+      console.error("Error:", error);
     }
   };
 
@@ -61,7 +81,7 @@ export default function UpdatePassword({ email = USUARIO }) {
             />
           </label>
           {disabledCheck && (
-            <p className='error text-sm text-slate-500'>
+            <p className='error text-sm text-red-500'>
               Las contraseñas no coinciden
             </p>
           )}
@@ -76,6 +96,11 @@ export default function UpdatePassword({ email = USUARIO }) {
           >
             Confirmar
           </button>
+          {errorMessage && (
+            <p className='error text-sm text-red-500 text-center w-80'>
+              {errorMessage}
+            </p>
+          )}
         </form>
       </section>
     </div>

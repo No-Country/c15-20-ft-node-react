@@ -4,6 +4,7 @@ import InputCheckbox from "./components/InputCheckbox";
 export default function Login() {
   const [inputs, setInputs] = useState({});
   const [showPassword, setShowPassword] = useState(false);
+  const [showError, setShowError] = useState(false);
   const handleChange = (event) => {
     const name = event.target.name;
     const value = event.target.value;
@@ -11,47 +12,42 @@ export default function Login() {
   };
   const handleSubmit = async (event) => {
     event.preventDefault();
-
-    fetch("http://localhost:3001/users/login/", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        email: inputs.useremail,
-        password: inputs.userpassword,
-      }),
-    }).then((response) => {
-      if (!response) {
-        console.log(response);
-        alert("Error al registrar usuario");
-      } else {
-        alert("Usuario registrado");
-      }
-    });
+    try {
+      const response = await fetch("http://localhost:3001/users/login/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: inputs.useremail,
+          password: inputs.userpassword,
+        }),
+      });
+      const data = await response.json();
+      alert("Ingresaste!");
+      console.log(data);
+    } catch (error) {
+      console.error("Error:", error);
+      setShowError(true);
+    }
+    // fetch("http://localhost:3001/users/login/", {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: JSON.stringify({
+    //     email: inputs.useremail,
+    //     password: inputs.userpassword,
+    //   }),
+    // }).then((response) => {
+    //   if (!response) {
+    //     console.log(response);
+    //     alert("Error. Usuario no registrado");
+    //   } else {
+    //     alert("Ingresaste!");
+    //   }
+    // });
   };
-  // const response = await fetch('http://localhost:3000/login', {
-  //   method: 'POST',
-  //   headers: {
-  //     'Content-Type': 'application/json',
-  //   },
-  //   body: JSON.stringify(inputs),
-  // });
-  // if (response.ok) {
-  //   const { token } = await response.json();
-  //   localStorage.setItem('authToken', token);
-  // } else {
-  //   alert('Error: Las credenciales de usuario no son correctas');
-  // }
-  // alert(inputs.useremail + " " + inputs.userpassword);
-  // if (
-  //   inputs.useremail === PREDEFINEDUSER.useremail &&
-  //   inputs.userpassword === PREDEFINEDUSER.userpassword
-  // ) {
-  //   alert("Inicio de sesión exitoso");
-  // } else {
-  //   alert("Error: Las credenciales de usuario no son correctas");
-  // }
 
   return (
     <div className='flex flex-col w-100 h-screen justify-center items-center space-y-2'>
@@ -83,15 +79,6 @@ export default function Login() {
               className='border-b border-blue-500 outline-0 focus:border-pink-500'
             />
           </label>
-          {/* <label htmlFor='check' className=' pb-4'>
-            Show Password{" "}
-            <input
-              id='check'
-              type='checkbox'
-              value={showPassword}
-              onChange={() => setShowPassword((prev) => !prev)}
-            />
-          </label> */}
           <InputCheckbox
             showPassword={showPassword}
             setShowPassword={setShowPassword}
@@ -102,6 +89,11 @@ export default function Login() {
           >
             Login
           </button>
+          {showError && (
+            <p className='text-red-500 text-sm'>
+              Usuario o contraseña incorrectos
+            </p>
+          )}
         </form>
         <div className='flex flex-row justify-around w-4/5 h-fit mx-auto space-x-1'>
           <span className=' h-px bg-slate-500 top-3 block grow shrink align-middle relative'></span>
