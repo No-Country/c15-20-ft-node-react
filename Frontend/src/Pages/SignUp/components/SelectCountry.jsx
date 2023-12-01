@@ -1,9 +1,17 @@
-export default function SelectCountry() {
+export default function SelectCountry({ country, onChange }) {
+  const selectCountry = (event) => {
+    const country = event.target.value;
+    console.log(country);
+    onChange(country);
+  };
   return (
     <select
       id='usercountry'
       name='usercountry'
       className='border-b border-blue-500 outline-0 focus:border-pink-500'
+      value={country}
+      onChange={selectCountry}
+      required
     >
       <option hidden>...</option>
       <option value='Afghanistan'>Afganistán</option>

@@ -5,6 +5,7 @@ import SelectCountry from "./components/SelectCountry";
 
 export default function SignUp() {
   const [inputs, setInputs] = useState({});
+  const [country, setCountry] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
@@ -19,6 +20,9 @@ export default function SignUp() {
     const value = event.target.value;
     setInputs((values) => ({ ...values, [name]: value }));
   };
+  const checkCountry = (value) => {
+    setCountry(value);
+  };
   const checkEmail = (event) => {
     const value = event.target.value;
     //validar en la base de datos si ya hay un email registrado
@@ -26,14 +30,6 @@ export default function SignUp() {
   };
   const checkPassword = (e) => {
     setPassword(e.target.value);
-    // const value = e.target.value;
-    // const validate = PSW_REGEX.test(value);
-    // if (!validate) {
-    //   return console.log("contraseña no valida");
-    // } else {
-    //   setPassword(value);
-    // }
-    //validar que tenga al menos 8 caracteres, una mayuscula, una minuscula y un numero
   };
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -42,6 +38,32 @@ export default function SignUp() {
         "La contraseña debe tener al menos 8 caracteres, una minúscula, una mayúscula, un número y un caracter especial"
       );
       return;
+    }
+    try {
+      const response = await fetch("http://localhost:3001/users/register/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: inputs.username,
+          lastname: inputs.userlastname,
+          country: country,
+          email: email,
+          password: password,
+        }),
+      });
+      if (response.ok) {
+        const data = await response.json();
+        console.log(data);
+        alert("Usuario creado!");
+      } else {
+        const error = await response.json();
+        console.log(error);
+        alert("Error. Usuario no registrado");
+      }
+    } catch (error) {
+      console.error("Error:", error);
     }
   };
 
@@ -92,7 +114,7 @@ export default function SignUp() {
           </label>
           <label htmlFor='usercountry' className=' self-start  space-x-4'>
             <p className='inline w-1/4'>País</p>
-            <SelectCountry />
+            <SelectCountry country={country} onChange={checkCountry} />
           </label>
           <label htmlFor='useremail' className=' self-start  space-x-4'>
             <p className='inline w-1/4'>Email</p>
@@ -145,12 +167,12 @@ export default function SignUp() {
             Registrar
           </button>
           {errorMessage && (
-            <p className='error text-sm text-slate-500 text-center'>
+            <p className='error text-sm text-red-500 text-center w-80'>
               {errorMessage}
             </p>
           )}
           {disabledCheck && (
-            <p className='error text-sm text-slate-500'>
+            <p className='error text-sm text-red-500'>
               Las contraseñas no coinciden
             </p>
           )}
