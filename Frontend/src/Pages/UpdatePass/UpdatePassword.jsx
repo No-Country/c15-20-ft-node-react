@@ -1,6 +1,6 @@
 import { useState } from "react";
-import InputCheckbox from "../Login/components/InputCheckbox";
-import { PSW_REGEX } from "../SignUp/Register";
+import InputCheckbox from "../login/components/InputCheckbox";
+import { PSW_REGEX } from "../signUp/Register";
 const USUARIO = "admin@admin.com";
 
 export default function UpdatePassword({ email = USUARIO }) {
