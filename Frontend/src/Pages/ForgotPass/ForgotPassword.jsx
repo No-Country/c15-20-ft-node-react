@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 export default function ForgotPassword() {
   const [email, setEmail] = useState("");
@@ -47,11 +48,11 @@ export default function ForgotPassword() {
           <span className=' h-px bg-slate-500 top-3 block grow shrink align-middle relative'></span>
         </div>
         <p className=' cursor-pointer text-blue-400 self-center'>
-          Crear una cuenta nueva
+          <Link to='/signup'>Crear una cuenta nueva</Link>
         </p>
         <div className='border-t w-full flex justify-center'>
           <p className=' cursor-pointer  font-bold text-blue-400'>
-            Volver al inicio de sesión
+            <Link to='/login'>Volver al inicio de sesión</Link>
           </p>
         </div>
       </section>
