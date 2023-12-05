@@ -12,7 +12,9 @@ import Crud from "./pages/adminPanel/components/Crud";
 import Log from "./pages/adminPanel/components/Log";
 import ForgotPassword from "./Pages/forgotPass/ForgotPassword";
 import SignUp from "./Pages/signUp/SignUp";
+import Checkout from "./Pages/checkout/Checkout";
 import { ChakraProvider } from '@chakra-ui/react';
+
 
 function App() {
   const router = createBrowserRouter([
@@ -27,6 +29,10 @@ function App() {
         {
           path: "/about",
           element: <AboutPage />,
+        },
+        {
+          path: "/checkout",
+          element: <Checkout />,
         },
         {
           path: "/services",
