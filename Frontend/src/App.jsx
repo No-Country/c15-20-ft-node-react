@@ -1,4 +1,8 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { ChakraProvider } from "@chakra-ui/react";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { login } from "./redux/reducer/userSlice";
 import Layout from "./Layout";
 import ErrorPage from "./Pages/error/ErrorPage";
 import HomePage from "./Pages/home/HomePage";
@@ -13,10 +17,18 @@ import Log from "./pages/adminPanel/components/Log";
 import ForgotPassword from "./Pages/forgotPass/ForgotPassword";
 import SignUp from "./Pages/signUp/SignUp";
 import Checkout from "./Pages/checkout/Checkout";
-import { ChakraProvider } from '@chakra-ui/react';
-
+import UserProfile from "./Pages/userProfile/UserProfile";
 
 function App() {
+  const dispatch = useDispatch();
+  const token = localStorage.getItem("token");
+  useEffect(() => {
+    if (token) {
+      dispatch(login());
+      console.log(token);
+    }
+  }, [dispatch, token]);
+
   const router = createBrowserRouter([
     {
       element: <Layout />,
@@ -61,6 +73,10 @@ function App() {
           ],
         },
         {
+          path: "/user",
+          element: <UserProfile />,
+        },
+        {
           path: "/login",
           element: <Login />,
         },
@@ -75,7 +91,11 @@ function App() {
       ],
     },
   ]);
-  return <ChakraProvider><RouterProvider router={router} /></ChakraProvider>;
+  return (
+    <ChakraProvider>
+      <RouterProvider router={router} />
+    </ChakraProvider>
+  );
 }
 
 export default App;

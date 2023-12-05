@@ -1,13 +1,16 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import InputCheckbox from "./components/InputCheckbox";
 import InputForm from "./components/InputForm";
 import Button from "../../components/Button";
+import { loginUser } from "../../redux/reducer/userSlice";
 
 export default function Login() {
   const [inputs, setInputs] = useState({});
   const [showPassword, setShowPassword] = useState(false);
   const [showError, setShowError] = useState(false);
+  const dispatch = useDispatch();
   const handleChange = (event) => {
     const name = event.target.name;
     const value = event.target.value;
@@ -27,6 +30,7 @@ export default function Login() {
         }),
       });
       const data = await response.json();
+      dispatch(loginUser(data));
       alert("Ingresaste!");
       localStorage.setItem("authToken", data.token);
       console.log(data);

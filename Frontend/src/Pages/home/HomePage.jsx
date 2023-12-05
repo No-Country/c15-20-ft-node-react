@@ -1,17 +1,17 @@
 export default function HomePage() {
   return (
     <section className='w-full py-12 md:py-24 lg:py-32 xl:py-48 bg-black'>
-      <section className='w-full h-screen bg-black flex flex-col items-center justify-center text-white'>
+      <section className='w-full flex flex-col items-center justify-center text-white'>
         <div className='animate-ping w-10 h-10 bg-white rounded-full' />
-        <h1 className='text-6xl font-bold mt-8'>Welcome</h1>
+        <h1 className='text-6xl font-bold my-8'>Bienvenido</h1>
       </section>
       <div className='container px-4 md:px-6'>
         <div className='grid gap-6 items-center'>
           <div className='flex flex-col justify-center space-y-8 text-center'>
             <div className='space-y-2'>
-              <h1 className='text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-500'>
+              <h2 className='text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-500'>
                 Discover Our Unique Features
-              </h1>
+              </h2>
               <p className='max-w-[600px] text-zinc-200 md:text-xl dark:text-zinc-100 mx-auto'>
                 Our features are designed to enhance your productivity and
                 streamline your workflow.
@@ -21,60 +21,58 @@ export default function HomePage() {
               <div className='grid grid-cols-3 gap-8'>
                 <div className='flex flex-col items-center space-y-2 border-gray-800 p-4 rounded-lg'>
                   <IconInbox className='text-white h-6 w-6 mb-2 border-2 border-gray-500 rounded-full' />
-                  <h2 className='text-xl font-bold text-white'>Smart Inbox</h2>
+                  <h3 className='text-xl font-bold text-white'>
+                    Diseño profesional
+                  </h3>
                   <p className='text-zinc-200 dark:text-zinc-100'>
-                    Our Smart Inbox feature helps you manage your emails
-                    efficiently by prioritizing important emails.
+                    Creamos sitios web atractivos y funcionales que cumplen con
+                    tus objetivos.
                   </p>
                 </div>
                 <div className='flex flex-col items-center space-y-2 border-gray-800 p-4 rounded-lg'>
                   <IconIntegration className='text-white h-6 w-6 mb-2 border-2 border-gray-500 rounded-full' />
-                  <h2 className='text-xl font-bold text-white'>
-                    Seamless Integration
-                  </h2>
+                  <h3 className='text-xl font-bold text-white'>Responsivo</h3>
                   <p className='text-zinc-200 dark:text-zinc-100'>
-                    Seamless Integration allows you to connect with your
-                    favorite apps and services without leaving your inbox.
+                    Tu sitio web se verá bien en cualquier dispositivo.
                   </p>
                 </div>
                 <div className='flex flex-col items-center space-y-2 border-gray-800 p-4 rounded-lg'>
                   <IconCustomization className='text-white h-6 w-6 mb-2 border-2 border-gray-500 rounded-full' />
-                  <h2 className='text-xl font-bold text-white'>
-                    Advanced Customization
-                  </h2>
+                  <h3 className='text-xl font-bold text-white'>
+                    SEO optimizado
+                  </h3>
                   <p className='text-zinc-200 dark:text-zinc-100'>
-                    With Advanced Customization, you can personalize your email
-                    client to suit your preferences and work style.
+                    Tu sitio web será fácil de encontrar en los motores de
+                    búsqueda.
                   </p>
                 </div>
                 <div className='flex flex-col items-center space-y-2 border-gray-800 p-4 rounded-lg'>
                   <IconSearch className='text-white h-6 w-6 mb-2 border-2 border-gray-500 rounded-full' />
-                  <h2 className='text-xl font-bold text-white'>
-                    Powerful Search
-                  </h2>
+                  <h3 className='text-xl font-bold text-white'>
+                    Hosting y dominio incluidos
+                  </h3>
                   <p className='text-zinc-200 dark:text-zinc-100'>
-                    Our Powerful Search feature allows you to find any email,
-                    contact, or file in seconds.
+                    No te preocupes por la tecnología, nosotros nos encargamos
+                    de todo.
                   </p>
                 </div>
                 <div className='flex flex-col items-center space-y-2 border-gray-800 p-4 rounded-lg'>
                   <IconSecurity className='text-white h-6 w-6 mb-2 border-2 border-gray-500 rounded-full' />
-                  <h2 className='text-xl font-bold text-white'>
-                    Reliable Security
-                  </h2>
+                  <h3 className='text-xl font-bold text-white'>
+                    Soporte técnico
+                  </h3>
                   <p className='text-zinc-200 dark:text-zinc-100'>
-                    With Reliable Security, your data is always safe and
-                    protected.
+                    Estamos aquí para ayudarte a que tu sitio web funcione
+                    correctamente.
                   </p>
                 </div>
                 <div className='flex flex-col items-center space-y-2 border-gray-800 p-4 rounded-lg'>
                   <IconCollaboration className='text-white h-6 w-6 mb-2 border-2 border-gray-500 rounded-full' />
-                  <h2 className='text-xl font-bold text-white'>
-                    Easy Collaboration
-                  </h2>
+                  <h3 className='text-xl font-bold text-white'>
+                    Precio asequible
+                  </h3>
                   <p className='text-zinc-200 dark:text-zinc-100'>
-                    Easy Collaboration allows you to share and edit documents
-                    with your team in real time.
+                    Ofrecemos servicios de calidad a precios competitivos.
                   </p>
                 </div>
               </div>
