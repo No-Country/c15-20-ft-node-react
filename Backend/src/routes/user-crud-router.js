@@ -10,9 +10,7 @@ const userExists = async (req, res, next) => {
   await connectDb();
 
   const { email } = req.body;
-  console.log("email", email);
   const emailExists = await UserCRUD.findUserByEmail(email);
-  console.log("emailexists", emailExists);
 
   emailExists
     ? res.status(400).send("El correo ya se encuentra registrado")
@@ -23,9 +21,7 @@ const userNotExists = async () => {
   await connectDb();
 
   const { email } = req.body;
-  console.log("email", email);
   const emailExists = await UserCRUD.findUserByEmail(email);
-  console.log("emailexists", emailExists);
 
   !emailExists
     ? res.status(400).send("El correo no se encuentra registrado")

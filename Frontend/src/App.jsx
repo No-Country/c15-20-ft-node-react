@@ -7,10 +7,12 @@ import ServicesPage from "./Pages/services/ServicesPage";
 import StorePage from "./Pages/store/StorePage";
 import Login from "./Pages/login/Login";
 import AdminPanel from "./Pages/adminPanel/AdminPanel";
-import Crud from "./Pages/adminPanel/panelComponents/Crud";
-import Log from "./Pages/adminPanel/panelComponents/Log";
+import Default from "./pages/adminPanel/components/Default";
+import Crud from "./pages/adminPanel/components/Crud";
+import Log from "./pages/adminPanel/components/Log";
 import ForgotPassword from "./Pages/forgotPass/ForgotPassword";
 import SignUp from "./Pages/signUp/SignUp";
+import { ChakraProvider } from '@chakra-ui/react';
 
 function App() {
   const router = createBrowserRouter([
@@ -35,15 +37,19 @@ function App() {
           element: <StorePage />,
         },
         {
-          path: "/user",
+          path: "/admin",
           element: <AdminPanel />,
           children: [
             {
-              path: "/user/crud",
+              path: "/admin/",
+              element: <Default />,
+            },
+            {
+              path: "/admin/crud",
               element: <Crud />,
             },
             {
-              path: "/user/log",
+              path: "/admin/log",
               element: <Log />,
             },
           ],
@@ -63,7 +69,7 @@ function App() {
       ],
     },
   ]);
-  return <RouterProvider router={router} />;
+  return <ChakraProvider><RouterProvider router={router} /></ChakraProvider>;
 }
 
 export default App;

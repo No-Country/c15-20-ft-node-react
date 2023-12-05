@@ -1,6 +1,6 @@
 const express = require("express");
-const ServiceOrderCRUD = require("../CRUDs/ServiceOrderCrud.js");
 const connectDb = require("../database/conn.js");
+const ServiceOrderCRUD = require("../CRUDs/ServiceOrderCrud.js");
 
 const router = express.Router();
 

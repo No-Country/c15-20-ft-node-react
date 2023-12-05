@@ -9,9 +9,9 @@ router.use(express.json());
 router.get("/", async (req, res) => {
     await connectDb();
 
-    const userList = await ProductCRUD.findProducts();
+    const productList = await ProductCRUD.findProducts();
 
-    res.status(200).json(userList);
+    res.status(200).json(productList);
 });
 
 router.post("/", async (req, res) => {
