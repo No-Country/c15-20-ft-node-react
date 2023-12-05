@@ -1,6 +1,8 @@
 import { useState } from "react";
-import InputCheckbox from "./components/InputCheckbox";
 import { Link } from "react-router-dom";
+import InputCheckbox from "./components/InputCheckbox";
+import InputForm from "./components/InputForm";
+import Button from "../../components/Button";
 
 export default function Login() {
   const [inputs, setInputs] = useState({});
@@ -36,46 +38,48 @@ export default function Login() {
 
   return (
     <div className='flex flex-col w-100 h-screen justify-center items-center space-y-2'>
-      <section className='border flex flex-col w-80 h-96 justify-evenly'>
-        <form
-          onSubmit={handleSubmit}
-          className='flex flex-col items-center p-4 space-y-2 '
-        >
-          <h1 className='text-lg font-bold'>webKong</h1>
-          <label htmlFor='useremail' className=' self-start  space-x-4'>
-            <p className='inline w-1/4'>Email</p>
-            <input
+      <section className='shadow-lg rounded-lg dark:bg-zinc-850 border border-gray-300 flex flex-col w-80  min-h-96 max-h-fit pb-6 justify-evenly'>
+        <form onSubmit={handleSubmit} className='flex flex-col p-4 space-y-2 '>
+          <h1 className=' text-2xl font-bold self-center'>webKong</h1>
+          <label htmlFor='useremail'>
+            <p>Email</p>
+            <InputForm
               type='email'
               id='useremail'
               name='useremail'
+              placeholder='ejemplo@mail.com'
               value={inputs.useremail || ""}
               onChange={handleChange}
-              className=' self-end border-b border-blue-500 outline-0 focus:border-pink-500'
+              extraStyles={`w-full `}
             />
           </label>
-          <label htmlFor='userpassword' className='self-start  space-x-4'>
-            <p className='inline'>Password</p>
-            <input
+          <label htmlFor='userpassword'>
+            <p>Password</p>
+            <InputForm
               id='userpassword'
               name='userpassword'
               type={showPassword ? "text" : "password"}
               value={inputs.userpassword || ""}
               onChange={handleChange}
-              className='border-b border-blue-500 outline-0 focus:border-pink-500'
+              extraStyles={`w-full`}
             />
           </label>
           <InputCheckbox
             showPassword={showPassword}
             setShowPassword={setShowPassword}
+            extraStyles=' self-center'
           />
-          <button
+          <Button type='submit' extraStyles={"w-full"}>
+            Ingresar
+          </Button>
+          {/* <button
             type='submit'
             className='rounded-lg bg-blue-500 hover:bg-blue-400 transition-all text-white w-32 px-4 py-1'
           >
             Login
-          </button>
+          </button> */}
           {showError && (
-            <p className='text-red-500 text-sm'>
+            <p className='text-red-500 text-sm self-center'>
               Usuario o contraseña incorrectos
             </p>
           )}
@@ -97,7 +101,7 @@ export default function Login() {
           <Link to='/recover'>¿Has olvidado la contraseña?</Link>
         </p>
       </section>
-      <section className='border flex flex-col w-80 items-center p-4'>
+      <section className='shadow-lg rounded-lg dark:bg-zinc-850 border border-gray-300 flex flex-col w-80 items-center p-4'>
         <p>
           ¿No tienes una cuenta?{" "}
           <span className=' cursor-pointer text-blue-400'>
