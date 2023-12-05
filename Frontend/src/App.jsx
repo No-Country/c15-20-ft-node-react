@@ -11,6 +11,7 @@ import Crud from "./Pages/adminPanel/panelComponents/Crud";
 import Log from "./Pages/adminPanel/panelComponents/Log";
 import ForgotPassword from "./Pages/forgotPass/ForgotPassword";
 import SignUp from "./Pages/signUp/SignUp";
+import Checkout from "./Pages/checkout/Checkout";
 
 function App() {
   const router = createBrowserRouter([
@@ -25,6 +26,10 @@ function App() {
         {
           path: "/about",
           element: <AboutPage />,
+        },
+        {
+          path: "/checkout",
+          element: <Checkout />,
         },
         {
           path: "/services",
