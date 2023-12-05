@@ -15,7 +15,7 @@ const productOrderSchema = new Schema({
     },
     products: [
         {
-            type: String,
+            type: Object,
             required: true
         }
     ],

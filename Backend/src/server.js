@@ -26,7 +26,7 @@ app.use(
 );
 
 app.use("/services", serviceRouter);
-app.use("/products", authVerification, productRouter);
+app.use("/products", productRouter);
 app.use("/users", userRouter);
 app.use("/service-orders", serviceOrderRouter);
 app.use("/product-orders", productOrderRouter);
