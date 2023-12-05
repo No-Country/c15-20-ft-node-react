@@ -1,14 +1,19 @@
-//habria que dejar un Layout para cada una de las tres pestañas: vista gral, crud y log
-
 import { Outlet } from "react-router-dom";
-import SideNav from "./panelComponents/SideNav";
+import SideNav from "./components/SideNav";
 
 export default function AdminPanel() {
-  return (
-    <div>
-      <h1>AdminPanel</h1>
-      <SideNav />
-      <Outlet />
-    </div>
-  );
-}
+
+    return (
+        <div className="flex h-screen">
+          <div className="w-1/8 bg-gray-200">
+            <SideNav />
+          </div>
+          <div className="w-7/8 flex flex-col">
+            <h1 className="text-4xl text-center py-4">AdminPanel</h1>
+            <div className="flex-grow">
+              <Outlet />
+            </div>
+          </div>
+        </div>
+      );
+};
