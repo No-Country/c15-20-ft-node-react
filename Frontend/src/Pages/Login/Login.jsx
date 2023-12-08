@@ -1,16 +1,15 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+
 import { Link } from "react-router-dom";
 import InputCheckbox from "./components/InputCheckbox";
 import InputForm from "./components/InputForm";
 import Button from "../../components/Button";
-import { loginUser } from "../../redux/reducer/userSlice";
 
 export default function Login() {
   const [inputs, setInputs] = useState({});
   const [showPassword, setShowPassword] = useState(false);
   const [showError, setShowError] = useState(false);
-  const dispatch = useDispatch();
+
   const handleChange = (event) => {
     const name = event.target.name;
     const value = event.target.value;
@@ -30,7 +29,7 @@ export default function Login() {
         }),
       });
       const data = await response.json();
-      dispatch(loginUser(data));
+
       alert("Ingresaste!");
       localStorage.setItem("authToken", data.token);
       console.log(data);
@@ -42,7 +41,7 @@ export default function Login() {
 
   return (
     <div className='flex flex-col w-100 h-screen justify-center items-center space-y-2'>
-      <section className='shadow-lg rounded-lg dark:bg-zinc-850 border border-gray-300 flex flex-col w-80  min-h-96 max-h-fit pb-6 justify-evenly'>
+      <section className='shadow-lg rounded-lg text-black dark:bg-zinc-850 border border-gray-300 flex flex-col w-80  min-h-96 max-h-fit pb-6 justify-evenly'>
         <form onSubmit={handleSubmit} className='flex flex-col p-4 space-y-2 '>
           <h1 className=' text-2xl font-bold self-center'>webKong</h1>
           <label htmlFor='useremail'>

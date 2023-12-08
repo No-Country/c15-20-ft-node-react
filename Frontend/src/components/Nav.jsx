@@ -1,24 +1,11 @@
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
-import UserProfile from "../Pages/userProfile/UserProfile";
 
 const cart = ["App Nativa Átomo"];
 
 export default function Nav() {
-  const rol = useSelector((state) => state.userSlice.rol);
-  console.log(rol);
-  const adminPanel = "/admin";
-  const userProfile = "/user";
-  const login = "/login";
-  const checkRol = () => {
-    if (rol === "admin") {
-      return adminPanel;
-    } else if (rol === "user") {
-      return userProfile;
-    } else {
-      return login;
-    }
-  };
+  // const adminPanel = "/admin";
+  // const userProfile = "/user";
+  // const login = "/login";
 
   return (
     <nav className='w-full'>
@@ -36,7 +23,7 @@ export default function Nav() {
           <Link to='/about'>Nosotros</Link>
         </li>
         <li>
-          <Link to={rol ? "/admin" : "/user"}>Ingresar/Usuario/Admin</Link>
+          <Link to={"/admin"}>Ingresar/Usuario/Admin</Link>
         </li>
         <li className='bg-transparent px-4 py-2 relative'>
           <Link to='/checkout'>

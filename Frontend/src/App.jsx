@@ -1,8 +1,5 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { ChakraProvider } from "@chakra-ui/react";
-import { useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { login } from "./redux/reducer/userSlice";
 import Layout from "./Layout";
 import ErrorPage from "./Pages/error/ErrorPage";
 import HomePage from "./Pages/home/HomePage";
@@ -20,15 +17,6 @@ import Checkout from "./Pages/checkout/Checkout";
 import UserProfile from "./Pages/userProfile/UserProfile";
 
 function App() {
-  const dispatch = useDispatch();
-  const token = localStorage.getItem("token");
-  useEffect(() => {
-    if (token) {
-      dispatch(login());
-      console.log(token);
-    }
-  }, [dispatch, token]);
-
   const router = createBrowserRouter([
     {
       element: <Layout />,
