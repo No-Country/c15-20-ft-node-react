@@ -15,8 +15,11 @@ import ForgotPassword from "./Pages/forgotPass/ForgotPassword";
 import SignUp from "./Pages/signUp/SignUp";
 import Checkout from "./Pages/checkout/Checkout";
 import UserProfile from "./Pages/userProfile/UserProfile";
+import useAuthStore from "./store/authStore";
+import Protected from "./Protected";
 
 function App() {
+  const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
   const router = createBrowserRouter([
     {
       element: <Layout />,
@@ -44,7 +47,11 @@ function App() {
         },
         {
           path: "/admin",
-          element: <AdminPanel />,
+          element: (
+            <Protected auth={isAuthenticated}>
+              <AdminPanel />
+            </Protected>
+          ),
           children: [
             {
               path: "/admin/",
@@ -62,7 +69,11 @@ function App() {
         },
         {
           path: "/user",
-          element: <UserProfile />,
+          element: (
+            <Protected auth={isAuthenticated}>
+              <UserProfile />
+            </Protected>
+          ),
         },
         {
           path: "/login",

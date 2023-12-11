@@ -1,6 +1,6 @@
 import { useState } from "react";
-
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import useAuthStore from "../../store/authStore";
 import InputCheckbox from "./components/InputCheckbox";
 import InputForm from "./components/InputForm";
 import Button from "../../components/Button";
@@ -9,6 +9,8 @@ export default function Login() {
   const [inputs, setInputs] = useState({});
   const [showPassword, setShowPassword] = useState(false);
   const [showError, setShowError] = useState(false);
+  const login = useAuthStore((state) => state.login);
+  const navigate = useNavigate();
 
   const handleChange = (event) => {
     const name = event.target.name;
@@ -29,10 +31,8 @@ export default function Login() {
         }),
       });
       const data = await response.json();
-
-      alert("Ingresaste!");
-      localStorage.setItem("authToken", data.token);
-      console.log(data);
+      login(data.token);
+      navigate("/");
     } catch (error) {
       console.error("Error:", error);
       setShowError(true);

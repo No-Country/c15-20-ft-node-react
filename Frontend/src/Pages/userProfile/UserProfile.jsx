@@ -1,85 +1,75 @@
-import { Button, Checkbox, Input } from "@chakra-ui/react";
+import { CardHeader, CardBody, CardFooter, Card } from "@chakra-ui/react";
+import { Input } from "@chakra-ui/react";
+import { Button } from "@chakra-ui/react";
+import UpdatePassword from "../updatePass/UpdatePassword";
 
 export default function UserProfile() {
   return (
-    <div className='space-y-12 p-6'>
-      <section className='sm:grid sm:grid-cols-2 sm:gap-6 border-b-2 border-gray-200 pb-6'>
-        <div className='space-y-4'>
-          <h2 className='text-2xl font-semibold'>Personal information</h2>
-          <p className='text-zinc-500 dark:text-zinc-400'>
-            Update your personal information.
-          </p>
-        </div>
-        <div className='space-y-4'>
-          <div className='space-y-2'>
-            {/* <Label htmlFor='email'>Email</Label> */}
-            <Input id='email' placeholder='Enter your email' type='email' />
-          </div>
-          <div className='space-y-2'>
-            {/* <Label htmlFor='country'>Country</Label> */}
-            <Input id='country' placeholder='Enter your country' />
-          </div>
-          <div className='space-y-2'>
-            {/* <Label htmlFor='language'>Language</Label> */}
-            <Input id='language' placeholder='Enter your language' />
-          </div>
-        </div>
-      </section>
-      <section className='sm:grid sm:grid-cols-2 sm:gap-6 border-b-2 border-gray-200 pb-6'>
-        <div className='space-y-4'>
-          <h2 className='text-2xl font-semibold'>Profile details</h2>
-          <p className='text-zinc-500 dark:text-zinc-400'>
-            Update your profile details.
-          </p>
-        </div>
-        <div className='space-y-4'>
-          <div className='space-y-2'>
-            {/* <Label htmlFor='avatar'>Avatar</Label> */}
-            <Input id='avatar' type='file' />
-          </div>
-          <div className='space-y-2'>
-            {/* <Label htmlFor='first-name'>First name</Label> */}
-            <Input id='first-name' placeholder='Enter your first name' />
-          </div>
-          <div className='space-y-2'>
-            {/* <Label htmlFor='last-name'>Last name</Label> */}
-            <Input id='last-name' placeholder='Enter your last name' />
-          </div>
-          <div className='space-y-2'>
-            {/* <Label htmlFor='username'>User name</Label> */}
-            <Input id='username' placeholder='Enter your username' />
-          </div>
-          <div className='space-y-2'>
-            {/* <Label htmlFor='mobile'>Mobile</Label> */}
-            <Input id='mobile' placeholder='Enter your mobile number' />
-          </div>
-        </div>
-      </section>
-      <section className='sm:grid sm:grid-cols-2 sm:gap-6 border-b-2 border-gray-200 pb-6'>
-        <div className='space-y-4'>
-          <h2 className='text-2xl font-semibold'>Notifications</h2>
-          <p className='text-zinc-500 dark:text-zinc-400'>
-            Choose your notification preferences.
-          </p>
-        </div>
-        <div className='space-y-4'>
-          <div className='flex items-center'>
-            <Checkbox defaultChecked id='offers' />
-            {/* <Label className='ml-2' htmlFor='offers'>
-              Exclusive product offers
-            </Label> */}
-          </div>
-          <div className='flex items-center'>
-            <Checkbox defaultChecked id='news' />
-            {/* <Label className='ml-2' htmlFor='news'>
-              News
-            </Label> */}
-          </div>
-        </div>
-      </section>
-      <div className='flex justify-end'>
-        <Button>Save</Button>
-      </div>
+    <div>
+      <div />
+      <main className='p-10'>
+        <h1 className='text-3xl font-bold mb-10'>Cuenta</h1>
+        <Card className='mb-10'>
+          <CardHeader>
+            <h1>Información Personal</h1>
+            <p>Actualizar tu información personal.</p>
+          </CardHeader>
+          <CardBody className='space-y-4'>
+            <div className='space-y-2'>
+              <label htmlFor='name'>Nombre</label>
+              <Input id='name' required />
+            </div>
+            <div className='space-y-2'>
+              <label htmlFor='email'>Email</label>
+              <Input id='email' required type='email' />
+            </div>
+            <div className='space-y-2'>
+              <label htmlFor='phone'>Número de teléfono</label>
+              <Input id='phone' required />
+            </div>
+          </CardBody>
+          <CardFooter>
+            <Button>Actualizar</Button>
+          </CardFooter>
+        </Card>
+        <UpdatePassword />
+        <Card className='mb-10'>
+          <CardHeader>
+            <h2>Change Password</h2>
+            <p>Update your password.</p>
+          </CardHeader>
+          <CardBody className='space-y-4'>
+            <div className='space-y-2'>
+              <label htmlFor='currentPassword'>Current password</label>
+              <Input id='currentPassword' required type='password' />
+            </div>
+            <div className='space-y-2'>
+              <label htmlFor='newPassword'>New password</label>
+              <Input id='newPassword' required type='password' />
+            </div>
+            <div className='space-y-2'>
+              <label htmlFor='confirmNewPassword'>Confirm new password</label>
+              <Input id='confirmNewPassword' required type='password' />
+            </div>
+          </CardBody>
+          <CardFooter>
+            <Button>Update Password</Button>
+          </CardFooter>
+        </Card>
+        <Card className='mb-10'>
+          <CardHeader>
+            <h2>My Reviews</h2>
+            <p>View and manage your reviews.</p>
+          </CardHeader>
+          <CardBody className='space-y-4'>
+            <p className='text-gray-500'>No reviews yet.</p>
+          </CardBody>
+          <CardFooter>
+            <Button>View All</Button>
+          </CardFooter>
+        </Card>
+      </main>
+      <div />
     </div>
   );
 }

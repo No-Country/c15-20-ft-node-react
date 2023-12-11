@@ -1,12 +1,16 @@
-import { Link } from "react-router-dom";
-
-const cart = ["App Nativa Átomo"];
+import { Link, useNavigate } from "react-router-dom";
+import useCartStore from "../store/cartStore";
+import useAuthStore from "../store/authStore";
 
 export default function Nav() {
-  // const adminPanel = "/admin";
-  // const userProfile = "/user";
-  // const login = "/login";
-
+  const cart = useCartStore((state) => state.cart);
+  const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
+  const logout = useAuthStore((state) => state.logout);
+  const navigate = useNavigate();
+  const logoutClick = () => {
+    logout();
+    navigate("/");
+  };
   return (
     <nav className='w-full'>
       <ul className='flex flex-row justify-end space-x-4'>
@@ -22,9 +26,23 @@ export default function Nav() {
         <li>
           <Link to='/about'>Nosotros</Link>
         </li>
-        <li>
+        {isAuthenticated ? (
+          <>
+            <li>
+              <Link to={"/user"}>Perfil</Link>
+            </li>
+            <li>
+              <button onClick={logoutClick}>Salir</button>
+            </li>
+          </>
+        ) : (
+          <li>
+            <Link to={"/login"}>Ingresar</Link>
+          </li>
+        )}
+        {/* <li>
           <Link to={"/admin"}>Ingresar/Usuario/Admin</Link>
-        </li>
+        </li> */}
         <li className='bg-transparent px-4 py-2 relative'>
           <Link to='/checkout'>
             <svg
