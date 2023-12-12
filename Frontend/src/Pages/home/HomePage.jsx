@@ -26,7 +26,7 @@ export default function HomePage() {
               </p>
             </div>
 
-            <section className='w-full max-w-full space-y-4 mx-auto'>
+            <section className='w-full max-w-full space-y-4 mx-auto py-6'>
               <div className='grid grid-cols-3 gap-8'>
                 <div className='flex flex-col items-center space-y-2 border-gray-800 p-4 rounded-lg'>
                   <IconInbox className='text-white h-6 w-6 mb-2 border-2 border-gray-500 rounded-full' />

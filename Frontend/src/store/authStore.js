@@ -9,6 +9,7 @@ const useAuthStore = create(
       role: "admin",
       login: (token) => set({ token: token, isAuthenticated: true }),
       logout: () => set({ token: null, isAuthenticated: false }),
+      setRole: (role) => set({ role: role }),
       // una accion asincrona que mande los datos a la api
     }),
     {
