@@ -10,8 +10,8 @@ import AdminPanel from "./Pages/adminPanel/AdminPanel";
 import Default from "./Pages/adminPanel/components/Default";
 import Crud from "./Pages/adminPanel/components/Crud";
 import Log from "./Pages/adminPanel/components/Log";
-import ForgotPassword from "./Pages/forgotPass/ForgotPassword";
-import SignUp from "./Pages/signUp/SignUp";
+import ForgotPassword from "./Pages/ForgotPass/ForgotPassword";
+import SignUp from "./Pages/SignUp/SignUp";
 import Checkout from "./Pages/checkout/Checkout";
 import { ChakraProvider } from '@chakra-ui/react';
 
