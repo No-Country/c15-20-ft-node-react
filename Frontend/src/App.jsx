@@ -5,7 +5,7 @@ import HomePage from "./Pages/home/HomePage";
 import AboutPage from "./Pages/about/AboutPage";
 import ServicesPage from "./Pages/services/ServicesPage";
 import StorePage from "./Pages/store/StorePage";
-import Login from "./Pages/login/Login";
+import Login from "./Pages/Login/Login";
 import AdminPanel from "./Pages/adminPanel/AdminPanel";
 import Default from "./pages/adminPanel/components/Default";
 import Crud from "./pages/adminPanel/components/Crud";
