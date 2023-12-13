@@ -3,7 +3,7 @@ import { PSW_REGEX } from "./Register";
 import InputCheckbox from "../Login/components/InputCheckbox";
 import SelectCountry from "./components/SelectCountry";
 import Button from "../../components/Button";
-import InputForm from "../login/components/InputForm";
+import InputForm from "../Login/components/InputForm";
 
 export default function SignUp() {
   const [inputs, setInputs] = useState({});
