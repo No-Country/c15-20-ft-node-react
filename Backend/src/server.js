@@ -1,5 +1,5 @@
 const express = require("express");
-const PORT = 3001;
+const PORT = process.env.PORT || 3001;
 const jwt = require("jsonwebtoken");
 const cors = require("cors");
 const serviceRouter = require("./routes/service-crud-router");
@@ -21,7 +21,7 @@ const app = express();
 
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: process.env.FRONTEND_URL || "http://localhost:5173",
   })
 );
 
