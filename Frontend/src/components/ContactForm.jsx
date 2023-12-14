@@ -1,5 +1,5 @@
 import { CardHeader, CardBody, CardFooter, Card } from "@chakra-ui/react";
-import InputForm from "../Pages/login/components/InputForm";
+import InputForm from "../Pages/Login/components/InputForm";
 import { Textarea } from "@chakra-ui/react";
 import Button from "./Button";
 import { useState } from "react";
