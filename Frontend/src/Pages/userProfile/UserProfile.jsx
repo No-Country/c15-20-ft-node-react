@@ -1,7 +1,7 @@
 import { CardHeader, CardBody, CardFooter, Card } from "@chakra-ui/react";
 import { Input } from "@chakra-ui/react";
 import { Button } from "@chakra-ui/react";
-import UpdatePassword from "../updatePass/UpdatePassword";
+import UpdatePassword from "../UpdatePass/UpdatePassword";
 
 export default function UserProfile() {
   return (
