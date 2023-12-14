@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { PSW_REGEX } from "./Register";
+import { Navigate } from "react-router-dom";
 import InputCheckbox from "../Login/components/InputCheckbox";
 import SelectCountry from "./components/SelectCountry";
 import Button from "../../components/Button";
@@ -13,6 +14,7 @@ export default function SignUp() {
   const [repeatPassword, setRepeatPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+  const [succes, setSucces] = useState(false);
 
   const disabledCheck =
     password && repeatPassword && password !== repeatPassword;
@@ -41,7 +43,6 @@ export default function SignUp() {
       );
       return;
     }
-    alert("Usuario creado!");
     try {
       const response = await fetch("http://localhost:3001/users/register/", {
         method: "POST",
@@ -58,8 +59,8 @@ export default function SignUp() {
       });
       if (response.ok) {
         const data = await response.json();
-        console.log(data);
         alert("Usuario creado!");
+        setSucces(true);
       } else {
         const error = await response.json();
         console.log(error);
@@ -71,8 +72,8 @@ export default function SignUp() {
   };
 
   return (
-    <div className='flex w-100 min-h-screen justify-center pt-6'>
-      <section className='shadow-lg rounded-lg dark:bg-zinc-850 border border-gray-300 flex flex-col w-fit h-fit justify-evenly px-6 py-4'>
+    <div className='flex w-100 bg-white min-h-screen justify-center pt-6'>
+      <section className='shadow-lg rounded-lg text-black  border border-gray-300 flex flex-col w-fit h-fit justify-evenly px-6 py-4'>
         <h1 className=' self-center text-lg font-bold'>Crea tu cuenta</h1>
         <div className='flex flex-row justify-around w-4/5 mx-auto'>
           <button className='border rounded bg-pink-300 px-4 py-1'>
@@ -173,6 +174,7 @@ export default function SignUp() {
               Las contraseñas no coinciden
             </p>
           )}
+          {succes && <Navigate to='/login' />}
         </form>
       </section>
     </div>

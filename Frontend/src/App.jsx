@@ -1,4 +1,6 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { ChakraProvider } from "@chakra-ui/react";
+import { jwtDecode } from "jwt-decode";
 import Layout from "./Layout";
 import ErrorPage from "./Pages/error/ErrorPage";
 import HomePage from "./Pages/home/HomePage";
@@ -13,10 +15,26 @@ import Log from "./Pages/adminPanel/components/Log";
 import ForgotPassword from "./Pages/ForgotPass/ForgotPassword";
 import SignUp from "./Pages/SignUp/SignUp";
 import Checkout from "./Pages/checkout/Checkout";
-import { ChakraProvider } from '@chakra-ui/react';
-
+import UserProfile from "./Pages/userProfile/UserProfile";
+import useAuthStore from "./store/authStore";
+import Protected from "./Protected";
+import { useEffect } from "react";
 
 function App() {
+  const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
+  // const login = useAuthStore((state) => state.login);
+  // const setRole = useAuthStore((state) => state.setRole);
+  // useEffect(() => {
+  //   const authStorage = JSON.parse(localStorage.getItem("auth-storage"));
+  //   console.log(authStorage);
+  //   if (authStorage.state.token) {
+  //     const token = authStorage.state.token;
+  //     console.log(token);
+  //     login(token);
+  //     const decodedToken = jwtDecode(token);
+  //     console.log(decodedToken);
+  //   }
+  // }, []);
   const router = createBrowserRouter([
     {
       element: <Layout />,
@@ -44,7 +62,11 @@ function App() {
         },
         {
           path: "/admin",
-          element: <AdminPanel />,
+          element: (
+            <Protected auth={isAuthenticated}>
+              <AdminPanel />
+            </Protected>
+          ),
           children: [
             {
               path: "/admin/",
@@ -61,6 +83,14 @@ function App() {
           ],
         },
         {
+          path: "/user",
+          element: (
+            <Protected auth={isAuthenticated}>
+              <UserProfile />
+            </Protected>
+          ),
+        },
+        {
           path: "/login",
           element: <Login />,
         },
@@ -75,7 +105,11 @@ function App() {
       ],
     },
   ]);
-  return <ChakraProvider><RouterProvider router={router} /></ChakraProvider>;
+  return (
+    <ChakraProvider>
+      <RouterProvider router={router} />
+    </ChakraProvider>
+  );
 }
 
 export default App;

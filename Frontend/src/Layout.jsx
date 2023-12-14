@@ -4,7 +4,7 @@ import Footer from "./components/Footer";
 
 export default function Layout() {
   return (
-    <div>
+    <div className=' bg-gray-800 text-white'>
       <Nav />
       <main>
         <Outlet />
