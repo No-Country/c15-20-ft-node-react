@@ -1,5 +1,5 @@
 import { useState } from "react";
-import InputCheckbox from "../login/components/InputCheckbox";
+import InputCheckbox from "../Login/components/InputCheckbox";
 import { PSW_REGEX } from "../signUp/Register";
 const USUARIO = "admin@admin.com";
 
