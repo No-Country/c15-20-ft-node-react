@@ -1,19 +1,11 @@
 import { RequestOrder } from "./RequestOrder";
 import { useState, useEffect } from "react";
-import {
-    Table,
-    Thead,
-    Tbody,
-    Tr,
-    Th,
-    TableContainer,
-  } from '@chakra-ui/react';
+import { Table, Thead, Tbody, Tr, Th, TableContainer, Box } from '@chakra-ui/react';
 
 export function RequestsOrderSection() {
-
     const [serviceDb, setServiceDb] = useState([]);
     useEffect(() => {
-        fetch('http://localhost:3001/service-orders/')
+        fetch('https://backend-c1520-8eb3ff14ed9d.herokuapp.com/service-orders/')
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
@@ -27,8 +19,9 @@ export function RequestsOrderSection() {
     }, []);
 
     return (
+        <Box p="4" bg="gray.800" color="white" borderRadius="md" boxShadow="md">
             <TableContainer>
-                <Table variant="striped">
+                <Table variant="simple" colorScheme="yellow">
                     <Thead>
                         <Tr>
                             <Th>Nombre</Th>
@@ -44,5 +37,6 @@ export function RequestsOrderSection() {
                     </Tbody>
                 </Table>
             </TableContainer>
-    )
+            </Box>
+    );
 };

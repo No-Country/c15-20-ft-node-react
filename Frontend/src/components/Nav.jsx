@@ -5,6 +5,7 @@ import useAuthStore from "../store/authStore";
 export default function Nav() {
   const cart = useCartStore((state) => state.cart);
   const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
+  const role = useAuthStore(state => state.role);
   const logout = useAuthStore((state) => state.logout);
   const navigate = useNavigate();
   const logoutClick = () => {
@@ -50,6 +51,7 @@ export default function Nav() {
               Nosotros
             </Link>
           </li>
+          <li><Link to={"/admin"} className='hover:text-transparent hover:bg-teal-us hover:bg-clip-text hover:transition-all'>Panel de administración</Link></li>
           {isAuthenticated ? (
             <>
               <li>

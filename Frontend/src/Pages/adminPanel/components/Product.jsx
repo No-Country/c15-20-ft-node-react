@@ -1,57 +1,28 @@
-import { useState } from "react";
-import { Tr, Td } from "@chakra-ui/react";
+import React, { useState } from "react";
+import { Tr, Td, Button, HStack, Input } from "@chakra-ui/react";
+import { DeleteAlert } from "./DeleteAlert";
+import { ProductModal } from "./ProductModal";
 
 export function Product(props) {
-    const { product } = props;
-    const [edit, setEdit] = useState(false);
-    const [editedProduct, setEditedProduct] = useState(product);
-
-    const handleEdit = (e) => {
-        const { name, value } = e.target;
-        setEdit(!edit);
-        setEditedProduct(prevState => ({
-            ...prevState,
-            [name]: value
-        }));
-    };
-
-    const handleUpdate = async (id) => {
-        fetch(`http://localhost:3001/products/${id}`, {
-            method: "PUT",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(editedProduct),
-        }).then((response) => {
-            if (!response.ok) {
-                console.log(response);
-                alert("Error al actualizar orden de producto(s)");
-            } else {
-                alert("Orden de producto(s) actualizado");
-            }
-        });
-        handleEdit();
-    };
-
+    const { product } = props
     const handleDelete = async (id) => {
 
     };
 
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setEditedProduct({ ...editedProduct, [name]: value });
-    };
-
     return (
         <Tr>
-            <Td>{edit ? <input type="text" name="title" value={editedProduct.title} onChange={handleChange} /> : product.title}</Td>
-            <Td>{edit ? <input type="text" name="description" value={editedProduct.description} onChange={handleChange}/> : product.description}</Td>
-            <Td>{edit ? <input type="text" name="tags" value={editedProduct.tags} onChange={handleChange}/> : product.tags.map((tag) => tag)}</Td>
-            <Td>{edit ? <input type="number" name="price" value={editedProduct.price}/> : product.price}</Td>
-            <Td>{edit ? <input type="text" name="imageUrl" value={editedProduct.imageUrl}/> : product.imageUrl}</Td>
+            <Td>{product.title}</Td>
+            <Td>{product.description}</Td>
+            <Td>{product.tags}</Td>
+            <Td>{product.price}</Td>
+            <Td>{product.imageUrl}</Td>
             <Td>
-                {edit ? <button onClick={() => {handleUpdate(product._id)}}>✔️</button> : <button onClick={handleEdit}>✍️</button>}
-                {edit ? <button onClick={handleEdit}>✖️</button> : <button onClick={() => {handleDelete(product._id)}}>🗑️</button>}
+                <HStack spacing={2}>
+                    <>
+                            <ProductModal />
+                            <DeleteAlert name="Producto" id={product._id} handleDelete={handleDelete} />
+                        </>
+                </HStack>
             </Td>
         </Tr>
     );
