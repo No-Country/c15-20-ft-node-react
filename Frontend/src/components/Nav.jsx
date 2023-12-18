@@ -1,11 +1,13 @@
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
-const cart = ["App Nativa Átomo"]
-
 export default function Nav() {
+  const cart = useSelector(s => s.cart);
   const isLoggedIn = false; // por el momento lo escribio asi para que se entienda despues con Redux manejamos el estado global
   const adminPanel = "/user";
   const login = "/login";
+  useEffect(() => {}, [cart.length])
   return (
     <nav className='w-full'>
       <ul className='flex flex-row justify-end space-x-4'>

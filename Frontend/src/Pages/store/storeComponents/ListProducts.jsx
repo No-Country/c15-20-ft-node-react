@@ -1,14 +1,13 @@
 import CardProduct from "./CardProduct";
-import * as TEMPLATES from '../mockups/templates';
-
-const { templates } = TEMPLATES;
+import { useSelector } from 'react-redux';
 
 export default function ListProduct({ filteredList, ...props }) {
+    const { allProducts, filteredProducts } = useSelector(s => s.products);
     return (
         <ul className="w-full grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 grid-rows-auto gap-6" >
             {(
-                filteredList.length ?
-                    filteredList : templates).map(t => <CardProduct {...t} {...props} />
+                filteredProducts.length ?
+                    filteredProducts : allProducts).map(t => <CardProduct key={t.title} {...t} {...props} />
                     )}
         </ul>
     )

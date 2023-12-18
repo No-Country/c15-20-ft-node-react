@@ -7,6 +7,7 @@ const productRouter = require("./routes/product-crud-router");
 const userRouter = require("./routes/user-crud-router");
 const serviceOrderRouter = require("./routes/service-order-crud-router");
 const productOrderRouter = require("./routes/product-order-crud-router");
+const checkoutRouter = require("./routes/checkout-router");
 
 const authVerification = (req, res, next) => {
   acessToken = req.headers["authorization"];
@@ -21,7 +22,7 @@ const app = express();
 
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: process.env.FRONTEND_URL ||"http://localhost:5173",
   })
 );
 
@@ -30,6 +31,7 @@ app.use("/products", productRouter);
 app.use("/users", userRouter);
 app.use("/service-orders", serviceOrderRouter);
 app.use("/product-orders", productOrderRouter);
+app.use("/checkout", checkoutRouter)
 
 app.use(express.json());
 
