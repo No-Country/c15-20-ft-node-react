@@ -1,46 +1,48 @@
-import { Request } from "./Request";
 import { useState, useEffect } from "react";
-import {
-    Table,
-    Thead,
-    Tbody,
-    Tr,
-    Th,
-    TableContainer,
-  } from '@chakra-ui/react';
+import { Table, Thead, Tbody, Tr, Th, TableContainer, Button, Box } from '@chakra-ui/react';
+import { Request } from "./Request";
 
 export function RequestSection() {
+  const [requestsDb, setRequestsDb] = useState([]);
 
-    const [requestsDb, setRequestsDb] = useState([]);
-    useEffect(() => {
-        fetch('http://localhost:3001/services/')
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response.json();
-            })
-            .then(data => setRequestsDb(data))
-            .catch(error => {
-                console.error('There has been a problem with your fetch operation:', error);
-            });
-    }, []);
+  useEffect(() => {
+    fetch('https://backend-c1520-8eb3ff14ed9d.herokuapp.com/services/')
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then(data => setRequestsDb(data))
+      .catch(error => {
+        console.error('There has been a problem with your fetch operation:', error);
+      });
+  }, []);
 
-    return (
-            <TableContainer>
-                <Table variant="striped">
-                    <Thead>
-                        <Tr>
-                            <Th>Título</Th>
-                            <Th>Descripción</Th>
-                            <Th>Precio</Th>
-                            <Th>Enlace imagen</Th>
-                        </Tr>
-                    </Thead>
-                    <Tbody>
-                    {requestsDb.map((request, index) => <Request key={index} request={request} />)}
-                    </Tbody>
-                </Table>
-            </TableContainer>
-    )
+  return (
+    <Box p="4" bg="gray.800" color="white" borderRadius="md" boxShadow="md">
+      <div className="flex justify-between items-center mb-4">
+        <h1 className="text-xl font-semibold">Maneja tus servicios</h1>
+        <Button colorScheme="yellow">Agregar servicio</Button>
+      </div>
+      <TableContainer>
+        <Table variant="simple" colorScheme="yellow">
+          <Thead>
+            <Tr>
+              <Th>Título</Th>
+              <Th>Descripción</Th>
+              <Th>Precio</Th>
+              <Th>Enlace imagen</Th>
+              <Th>Acciones</Th>
+            </Tr>
+          </Thead>
+          <Tbody>
+            {requestsDb.map((request, index) => (
+              <Request key={index} request={request} />
+            ))}
+          </Tbody>
+        </Table>
+      </TableContainer>
+    </Box>
+  );
 };

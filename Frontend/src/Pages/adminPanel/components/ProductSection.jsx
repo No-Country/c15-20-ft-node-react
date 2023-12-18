@@ -1,20 +1,13 @@
 import { Product } from "./Product";
 import { useState, useEffect } from "react";
-import {
-    Table,
-    Thead,
-    Tbody,
-    Tr,
-    Th,
-    TableContainer,
-  } from '@chakra-ui/react';
+import { Table, Thead, Tbody, Tr, Th, TableContainer, Button, Box } from '@chakra-ui/react';
 
 export function ProductSection(){
 
     const [productDb, setProductDb] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:3001/products/')
+        fetch('https://backend-c1520-8eb3ff14ed9d.herokuapp.com/products/')
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
@@ -28,21 +21,30 @@ export function ProductSection(){
     }, []);
 
     return (
-        <TableContainer>
-            <Table variant="striped">
-                <Thead>
-                    <Tr>
-                        <Th>Título</Th>
-                        <Th>Descripción</Th>
-                        <Th>Categorías</Th>
-                        <Th>Precio</Th>
-                        <Th>Url imagen</Th>
-                    </Tr>
-                </Thead>
-                <Tbody>
-                {productDb.map((product, index) => <Product key={index} product={product} />)} 
-                </Tbody>
-            </Table>
-        </TableContainer>
-    )
+        <Box p="4" bg="gray.800" color="white" borderRadius="md" boxShadow="md">
+            <div className="flex justify-between">
+                <h1 className="text-xl font-semibold">Maneja tus productos</h1>
+                <Button colorScheme="yellow">Agregar producto</Button>
+            </div>
+            <TableContainer>
+                <Table variant="simple" colorScheme="yellow">
+                    <Thead>
+                        <Tr>
+                            <Th>Título</Th>
+                            <Th>Descripción</Th>
+                            <Th>Categorías</Th>
+                            <Th>Precio</Th>
+                            <Th>Url imagen</Th>
+                            <Th>Acciones</Th>
+                        </Tr>
+                    </Thead>
+                    <Tbody>
+                        {productDb.map((product, index) => (
+                            <Product key={index} product={product} />
+                        ))}
+                    </Tbody>
+                </Table>
+            </TableContainer>
+        </Box>
+    );
 };

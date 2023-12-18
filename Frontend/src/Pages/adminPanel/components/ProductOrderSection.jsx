@@ -1,20 +1,13 @@
 import { ProductOrder } from "./ProductOrder";
 import { useState, useEffect } from "react";
-import {
-    Table,
-    Thead,
-    Tbody,
-    Tr,
-    Th,
-    TableContainer,
-  } from '@chakra-ui/react';
+import { Table, Thead, Tbody, Tr, Th, TableContainer, Box } from '@chakra-ui/react';
 
 export function ProductOrderSection(){
 
     const [orderDb, setOrderDb] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:3001/product-orders/')
+        fetch('https://backend-c1520-8eb3ff14ed9d.herokuapp.com/product-orders/')
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
@@ -28,8 +21,9 @@ export function ProductOrderSection(){
     }, []);
 
     return (
+        <Box p="4" bg="gray.800" color="white" borderRadius="md" boxShadow="md">
         <TableContainer>
-            <Table variant="striped">
+            <Table variant="simple" colorScheme="yellow">
                 <Thead>
                     <Tr>
                         <Th>Id Cliente</Th>
@@ -37,6 +31,7 @@ export function ProductOrderSection(){
                         <Th>Método de pago</Th>
                         <Th>Productos</Th>
                         <Th>Precio total</Th>
+                        <Th>Acciones</Th>
                     </Tr>
                 </Thead>
                 <Tbody>
@@ -44,5 +39,6 @@ export function ProductOrderSection(){
                 </Tbody>
             </Table>
         </TableContainer>
+        </Box>
     )
 };

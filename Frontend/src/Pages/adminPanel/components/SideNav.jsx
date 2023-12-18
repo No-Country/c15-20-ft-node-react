@@ -1,22 +1,27 @@
+import { Box, Link as ChakraLink } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 
 export default function SideNav() {
-
-  const linkStyle = "block py-2 px-4 rounded hover:bg-gray-700"
+  const linkStyle = {
+    display: "block",
+    padding: "8px",
+    borderRadius: "4px",
+    _hover: { bg: 'gray.700' },
+  };
 
   return (
-    <div className="h-full w-1/8 bg-gray-800 text-white">
-      <ul className="flex flex-col justify-end space-y-2 p-4">
+    <Box h="100%" w="12rem" bg="gray.800" color="#ecbc4c" p="4">
+      <ul className="flex flex-col space-y-2">
         <li>
-          <Link to="/admin" className={linkStyle}>General</Link>
+          <ChakraLink as={Link} to="/admin" {...linkStyle}>General</ChakraLink>
         </li>
         <li>
-          <Link to="/admin/crud" className={linkStyle}>CRUD</Link>
+          <ChakraLink as={Link} to="/admin/crud" {...linkStyle}>Productos y servicios</ChakraLink>
         </li>
         <li>
-          <Link to="/admin/log" className={linkStyle}>Log</Link>
+          <ChakraLink as={Link} to="/admin/log" {...linkStyle}>Órdenes</ChakraLink>
         </li>
       </ul>
-    </div>
+    </Box>
   );
 };
