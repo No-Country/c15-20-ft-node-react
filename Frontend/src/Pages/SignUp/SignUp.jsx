@@ -44,19 +44,22 @@ export default function SignUp() {
       return;
     }
     try {
-      const response = await fetch("http://localhost:3001/users/register/", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          name: inputs.username,
-          lastname: inputs.userlastname,
-          country: country,
-          email: email,
-          password: password,
-        }),
-      });
+      const response = await fetch(
+        "https://backend-c1520-8eb3ff14ed9d.herokuapp.com/users/register/",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            name: inputs.username,
+            lastname: inputs.userlastname,
+            country: country,
+            email: email,
+            password: password,
+          }),
+        }
+      );
       if (response.ok) {
         const data = await response.json();
         alert("Usuario creado!");

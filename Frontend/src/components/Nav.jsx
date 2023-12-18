@@ -12,12 +12,12 @@ export default function Nav() {
     navigate("/");
   };
   return (
-    <header className='w-full px-4 lg:px-6 h-14 flex items-center rounded-b-lg bg-white shadow-md  text-black'>
+    <header className='w-full px-4 lg:px-6 h-14 flex items-center rounded-b-lg fixed top-0 bg-zinc-50 bg-blend-luminosity bg-opacity-30 backdrop-blur-sm  shadow-md  text-white'>
       <span className=' font-grotesk-font font-bold text-2xl text-transparent bg-gradient-to-r bg-clip-text from-sunglow-us to-tea-rose'>
         wK
       </span>
       <nav className='w-full '>
-        <ul className='flex flex-row items-center justify-end gap-4 sm:gap-6'>
+        <ul className='flex flex-row items-center justify-end gap-4 sm:gap-6 font-common-font '>
           <li>
             <Link
               to='/'

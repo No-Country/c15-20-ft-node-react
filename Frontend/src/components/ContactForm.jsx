@@ -38,12 +38,12 @@ export default function ContactForm() {
   return (
     <Card
       maxW='lg'
-      className='mx-auto text-french-gray'
+      className=' text-french-gray'
       variant='elevated'
       boxShadow='xl'
     >
       <CardHeader>
-        <h3 className=' font-title-primary text-xl'>Contacto</h3>
+        <h3 className=' text-2xl font-title-primary font-semibold'>Contacto</h3>
         <p className=' font-common-font text-base'>
           Contactate con nosotros completando el siguiente formulario. Podes
           enviarnos cualquier duda o consulta.
