@@ -27,13 +27,10 @@ export default function ServicesPage() {
               </ul>
             </div>
             <div className='mt-6'>
-              <Button extraStyles='w-full'>Get Started</Button>
+              <Button extraStyles='w-full'>Comenzar</Button>
             </div>
           </div>
-          <div className='relative flex flex-col p-6 bg-white shadow-lg rounded-lg dark:bg-zinc-850 justify-between border border-purple-500'>
-            <div className='px-3 py-1 text-sm text-white bg-gradient-to-r from-pink-500 to-purple-500 rounded-full inline-block absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2'>
-              Popular
-            </div>
+          <div className=' flex flex-col p-6 bg-white shadow-lg rounded-lg dark:bg-zinc-850 justify-between border border-purple-500'>
             <div>
               <h3 className='text-2xl font-bold text-center'>Pro</h3>
               <div className='mt-4 text-center text-zinc-600 dark:text-zinc-400'>
@@ -60,7 +57,7 @@ export default function ServicesPage() {
             </div>
             <div className='mt-6'>
               <Button extraStyles='w-full bg-gradient-to-r from-pink-500 to-purple-500'>
-                Get Started
+                Comenzar
               </Button>
             </div>
           </div>
@@ -94,7 +91,7 @@ export default function ServicesPage() {
               </ul>
             </div>
             <div className='mt-6'>
-              <Button extraStyles='w-full'>Get Started</Button>
+              <Button extraStyles='w-full'>Comenzar</Button>
             </div>
           </div>
         </div>

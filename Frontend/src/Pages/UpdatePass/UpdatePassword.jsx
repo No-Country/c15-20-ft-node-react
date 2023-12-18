@@ -15,7 +15,7 @@ export default function UpdatePassword({ email = USUARIO }) {
     event.preventDefault();
     try {
       const response = await fetch(
-        "http://localhost:3001/users/change-password/",
+        "https://backend-c1520-8eb3ff14ed9d.herokuapp.com/users/change-password/",
         {
           method: "PUT",
           headers: {
