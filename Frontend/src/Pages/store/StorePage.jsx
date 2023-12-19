@@ -12,14 +12,20 @@ export default function StorePage() {
     if (!cart.includes(idProduct)) {
       const newCart = cart.slice();
       newCart.push(e.target.id);
-      return setCart(newCart)
+      return setCart(newCart);
     }
-  }
+  };
 
   return (
-    <div className="container mx-auto px-6 py-6">
-      {/* <SearchBar value={value} setValue={setValue} handleFilter={handleFilter} /> */}
-      <ListProduct filteredList={filteredList} handleAddCart={handleAddCart} cart={cart} />
-    </div>
+    <main className='px-6 py-24 bg-tea-rose'>
+      <div className='container mx-auto'>
+        {/* <SearchBar value={value} setValue={setValue} handleFilter={handleFilter} /> */}
+        <ListProduct
+          filteredList={filteredList}
+          handleAddCart={handleAddCart}
+          cart={cart}
+        />
+      </div>
+    </main>
   );
 }

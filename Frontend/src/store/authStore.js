@@ -6,10 +6,19 @@ const useAuthStore = create(
     (set, get) => ({
       token: null,
       isAuthenticated: false,
-      role: "admin",
+      email: null,
+      name: null,
+      lastName: null,
+      role: null,
+      productsPurchased: [],
+      servicesPurchased: [],
       login: (token) => set({ token: token, isAuthenticated: true }),
       logout: () => set({ token: null, isAuthenticated: false }),
       setRole: (role) => set({ role: role }),
+      setPersonalInfo: (name, lastName, email) =>
+        set({ name: name, lastName: lastName, email: email }),
+      setProductsPurchased: (products) => set({ productsPurchased: products }),
+      setServicesPurchased: (services) => set({ servicesPurchased: services }),
       // una accion asincrona que mande los datos a la api
     }),
     {

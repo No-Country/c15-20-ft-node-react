@@ -1,6 +1,29 @@
 import IconCheck from "./servicesComponents/IconCheck";
 import Button from "../../components/Button";
+import { useEffect } from "react";
 export default function ServicesPage() {
+  const fetchServices = async () => {
+    try {
+      const response = await fetch(
+        "https://backend-c1520-8eb3ff14ed9d.herokuapp.com/services/",
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      if (response.ok) {
+        const data = await response.json();
+        console.log(data);
+      }
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  };
+  useEffect(() => {
+    fetchServices();
+  }, []);
   return (
     <section className='min-h-screen w-full py-12 text-black bg-tea-rose dark:from-zinc-900 dark:to-zinc-800 flex items-center justify-center'>
       <div className='container px-4 md:px-6'>
