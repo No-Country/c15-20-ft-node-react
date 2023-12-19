@@ -13,7 +13,17 @@ const useAuthStore = create(
       productsPurchased: [],
       servicesPurchased: [],
       login: (token) => set({ token: token, isAuthenticated: true }),
-      logout: () => set({ token: null, isAuthenticated: false }),
+      logout: () =>
+        set({
+          token: null,
+          isAuthenticated: false,
+          email: null,
+          name: null,
+          lastName: null,
+          role: null,
+          productsPurchased: [],
+          servicesPurchased: [],
+        }),
       setRole: (role) => set({ role: role }),
       setPersonalInfo: (name, lastName, email) =>
         set({ name: name, lastName: lastName, email: email }),
