@@ -8,12 +8,13 @@ export function ServiceStatistics() {
       <CardHeader>
         <Heading size='md' color="#ecbc4c">Servicios</Heading>
       </CardHeader>
-      <CardBody>
-        <ServiceStatisticsTable />
-        <Divider colorScheme="yellow" />
-        <ServiceSalesGraph />
+      <CardBody display="flex" flexDirection="column" alignItems="center" justifyContent="center">
+          <ServiceStatisticsTable />
+        <Divider orientation="horizontal" borderColor="yellow" my="4" />
+          <ServiceSalesGraph />
       </CardBody>
     </Card>
   );
 };
+
 

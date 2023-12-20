@@ -1,4 +1,5 @@
 import { Card, CardHeader, CardBody, Heading } from "@chakra-ui/react";
+import { UserStatisticsTable } from "./UserStatisticsTable";
 
 export function UserStatistics(){
 
@@ -7,8 +8,8 @@ export function UserStatistics(){
         <CardHeader>
           <Heading size='md' color="#ecbc4c">Usuarios</Heading>
         </CardHeader>
-        <CardBody>
-          <div>Total de usuarios registrados y total de productos.</div>
+        <CardBody display="flex" flexDirection="column" alignItems="center" justifyContent="center">
+          < UserStatisticsTable />
         </CardBody>
       </Card>
     );

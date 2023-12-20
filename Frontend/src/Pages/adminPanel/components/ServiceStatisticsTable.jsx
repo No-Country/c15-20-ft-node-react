@@ -26,34 +26,36 @@ export function ServiceStatisticsTable(){
     //Con el id del servicio puedo sacar el tipo del servicio y el precio para poder generar estadísticas de ello
 
     return (
-        <StatGroup>
-        <Stat>
-            <StatLabel>Servicios completados</StatLabel>
-            <StatNumber>{completedRequests}</StatNumber>
-            <StatHelpText>
-              <StatArrow type='increase' />
-              23.36%
-              {/* relación con el mes pasado o algo así */}
-            </StatHelpText>
+      <StatGroup>
+      <div className='grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4'>
+          <Stat p={4} boxShadow="md" borderRadius="lg" bg="gray.700">
+              <StatLabel fontSize="lg" fontWeight="semibold">Servicios completados</StatLabel>
+              <StatNumber fontSize="3xl" fontWeight="bold">{completedRequests}</StatNumber>
+              <StatHelpText fontSize="sm" display="flex" alignItems="center">
+                  <StatArrow type='increase' mr={1} />
+                  23.36%
+                  {/* relación con el mes pasado o algo así */}
+              </StatHelpText>
           </Stat>
-          <Stat>
-            <StatLabel>Servicios pendientes</StatLabel>
-            <StatNumber>{pendingRequests}</StatNumber>
-            <StatHelpText>
-              <StatArrow type='increase' />
-              23.36%
-              {/* relación con el mes pasado o algo así */}
-            </StatHelpText>
+          <Stat p={4} boxShadow="md" borderRadius="lg" bg="gray.700">
+              <StatLabel fontSize="lg" fontWeight="semibold">Servicios pendientes</StatLabel>
+              <StatNumber fontSize="3xl" fontWeight="bold" color="#ecbc4c">{pendingRequests}</StatNumber>
+              <StatHelpText fontSize="sm" display="flex" alignItems="center">
+                  <StatArrow type='increase' mr={1} />
+                  23.36%
+                  {/* relación con el mes pasado o algo así */}
+              </StatHelpText>
           </Stat>
-          <Stat>
-            <StatLabel>Total recaudado</StatLabel>
-            <StatNumber>{`$ precio`}</StatNumber>
-            <StatHelpText>
-              <StatArrow type='increase' />
-              23.36%
-              {/* relación con el mes pasado o algo así */}
-            </StatHelpText>
+          <Stat p={4} boxShadow="md" borderRadius="lg" bg="gray.700">
+              <StatLabel fontSize="lg" fontWeight="semibold">Total recaudado</StatLabel>
+              <StatNumber fontSize="3xl" fontWeight="bold">{`$ 500`}</StatNumber>
+              <StatHelpText fontSize="sm" display="flex" alignItems="center">
+                  <StatArrow type='increase' mr={1} />
+                  23.36%
+                  {/* relación con el mes pasado o algo así */}
+              </StatHelpText>
           </Stat>
-        </StatGroup>
+      </div>
+  </StatGroup>
     );
 };
