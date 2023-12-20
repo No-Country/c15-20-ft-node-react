@@ -22,19 +22,31 @@ import { useEffect } from "react";
 
 function App() {
   const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
-  // const login = useAuthStore((state) => state.login);
-  // const setRole = useAuthStore((state) => state.setRole);
-  // useEffect(() => {
-  //   const authStorage = JSON.parse(localStorage.getItem("auth-storage"));
-  //   console.log(authStorage);
-  //   if (authStorage.state.token) {
-  //     const token = authStorage.state.token;
-  //     console.log(token);
-  //     login(token);
-  //     const decodedToken = jwtDecode(token);
-  //     console.log(decodedToken);
-  //   }
-  // }, []);
+  const login = useAuthStore((state) => state.login);
+  const setRole = useAuthStore((state) => state.setRole);
+  const setPersonalInfo = useAuthStore((state) => state.setPersonalInfo);
+  const setProductsPurchased = useAuthStore(
+    (state) => state.setProductsPurchased
+  );
+  const setServicesPurchased = useAuthStore(
+    (state) => state.setServicesPurchased
+  );
+  useEffect(() => {
+    const authStorage = JSON.parse(localStorage.getItem("auth-storage"));
+    if (authStorage.state.token) {
+      const token = authStorage.state.token;
+      login(token);
+      const decodedToken = jwtDecode(token);
+      setRole(decodedToken.role);
+      setPersonalInfo(
+        decodedToken.name,
+        decodedToken.lastname,
+        decodedToken.email
+      );
+      setProductsPurchased(decodedToken.products);
+      setServicesPurchased(decodedToken.services);
+    }
+  }, []);
   const router = createBrowserRouter([
     {
       element: <Layout />,
