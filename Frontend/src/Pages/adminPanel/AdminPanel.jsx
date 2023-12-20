@@ -4,6 +4,7 @@ import SideNav from "./components/SideNav";
 
 export default function AdminPanel() {
   return (
+
     <Flex direction={{ base: "column", md: "row" }} minHeight="100vh" bg="gray.900">
       <Box w={{ base: "100%", md: "12rem" }} bg="gray.800" boxShadow="lg" marginTop={12}>
         <SideNav />
@@ -15,10 +16,10 @@ export default function AdminPanel() {
           </Heading>
         </Box>
         <Box px={{ base: "4", md: "12" }} py="4" flex="1" overflowY="auto" boxShadow="xl">
+
           <Outlet />
         </Box>
       </Flex>
     </Flex>
   );
-};
-
+}

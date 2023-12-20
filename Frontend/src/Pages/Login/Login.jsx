@@ -20,16 +20,19 @@ export default function Login() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await fetch("https://backend-c1520-8eb3ff14ed9d.herokuapp.com/users/login/", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email: inputs.useremail,
-          password: inputs.userpassword,
-        }),
-      });
+      const response = await fetch(
+        "https://backend-c1520-8eb3ff14ed9d.herokuapp.com/users/login/",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email: inputs.useremail,
+            password: inputs.userpassword,
+          }),
+        }
+      );
       const data = await response.json();
       login(data.token);
       navigate("/");
@@ -40,10 +43,12 @@ export default function Login() {
   };
 
   return (
-    <div className='flex flex-col w-100 h-screen justify-center items-center space-y-2'>
-      <section className='shadow-lg rounded-lg text-black dark:bg-zinc-850 border border-gray-300 flex flex-col w-80  min-h-96 max-h-fit pb-6 justify-evenly'>
+    <div className='flex flex-col w-100 h-screen justify-center items-center space-y-2 bg-teal-us font-common-font'>
+      <section className='shadow-lg rounded-lg bg-slate-50 text-black dark:bg-zinc-850 border border-gray-300 flex flex-col w-80  min-h-96 max-h-fit pb-6 justify-evenly'>
         <form onSubmit={handleSubmit} className='flex flex-col p-4 space-y-2 '>
-          <h1 className=' text-2xl font-bold self-center'>webKong</h1>
+          <h1 className=' text-2xl font-grotesk-font font-bold self-center text-transparent bg-gradient-to-r bg-clip-text from-sunglow-us to-tea-rose'>
+            webKong
+          </h1>
           <label htmlFor='useremail'>
             <p>Email</p>
             <InputForm
@@ -104,7 +109,7 @@ export default function Login() {
           <Link to='/recover'>¿Has olvidado la contraseña?</Link>
         </p>
       </section>
-      <section className='shadow-lg rounded-lg dark:bg-zinc-850 border border-gray-300 flex flex-col w-80 items-center p-4'>
+      <section className='shadow-lg rounded-lg bg-slate-50 text-black border border-gray-300 flex flex-col w-80 items-center p-4'>
         <p>
           ¿No tienes una cuenta?{" "}
           <span className=' cursor-pointer text-blue-400'>

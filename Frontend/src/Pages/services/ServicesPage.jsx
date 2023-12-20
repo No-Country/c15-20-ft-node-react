@@ -1,10 +1,39 @@
 import IconCheck from "./servicesComponents/IconCheck";
 import Button from "../../components/Button";
+import CardService from "./servicesComponents/CardService";
+import { useEffect, useState } from "react";
 export default function ServicesPage() {
+  const [services, setServices] = useState([]);
+  const fetchServices = async () => {
+    try {
+      const response = await fetch(
+        "https://backend-c1520-8eb3ff14ed9d.herokuapp.com/services/",
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      if (response.ok) {
+        const data = await response.json();
+        console.log(data);
+        setServices(data);
+      }
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  };
+  useEffect(() => {
+    fetchServices();
+  }, []);
   return (
     <section className='min-h-screen w-full py-12 text-black bg-tea-rose dark:from-zinc-900 dark:to-zinc-800 flex items-center justify-center'>
       <div className='container px-4 md:px-6'>
         <div className='grid grid-cols-1 gap-6 mt-8 md:grid-cols-3 md:gap-8'>
+          {services.map((service) => (
+            <CardService key={services.indexOf(service)} service={service} />
+          ))}
           <div className='flex flex-col p-6 bg-white shadow-lg rounded-lg dark:bg-zinc-850 justify-between border border-gray-300'>
             <div>
               <h3 className='text-2xl font-bold text-center'>Básico</h3>

@@ -5,7 +5,7 @@ import useAuthStore from "../store/authStore";
 export default function Nav() {
   const cart = useCartStore((state) => state.cart);
   const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
-  const role = useAuthStore(state => state.role);
+  const role = useAuthStore((state) => state.role);
   const logout = useAuthStore((state) => state.logout);
   const navigate = useNavigate();
   const logoutClick = () => {
@@ -13,7 +13,7 @@ export default function Nav() {
     navigate("/");
   };
   return (
-    <header className='w-full px-4 lg:px-6 h-14 flex items-center rounded-b-lg fixed top-0 bg-zinc-50 bg-blend-luminosity bg-opacity-30 backdrop-blur-sm  shadow-md  text-white'>
+    <header className='z-10 w-full px-4 lg:px-6 h-14 flex items-center rounded-b-lg fixed top-0 bg-zinc-50 bg-blend-luminosity bg-opacity-30 backdrop-blur-sm  shadow-md  text-white'>
       <span className=' font-grotesk-font font-bold text-2xl text-transparent bg-gradient-to-r bg-clip-text from-sunglow-us to-tea-rose'>
         wK
       </span>
@@ -51,7 +51,14 @@ export default function Nav() {
               Nosotros
             </Link>
           </li>
-          <li><Link to={"/admin"} className='hover:text-transparent hover:bg-teal-us hover:bg-clip-text hover:transition-all'>Panel de administración</Link></li>
+          <li>
+            <Link
+              to={"/admin"}
+              className='hover:text-transparent hover:bg-teal-us hover:bg-clip-text hover:transition-all'
+            >
+              Panel de administración
+            </Link>
+          </li>
           {isAuthenticated ? (
             <>
               <li>

@@ -12,7 +12,7 @@ export default function Faq() {
     <div className=' min-h-full '>
       <Card className='shadow-lg w-[550px]' maxW='lg'>
         <CardHeader>
-          <h2 className='text-2xl font-title-primary font-semibold'>
+          <h2 className='text-2xl font-grotesk-font font-semibold'>
             Preguntas Frecuentes
           </h2>
         </CardHeader>
