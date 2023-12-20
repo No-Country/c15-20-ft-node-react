@@ -31,33 +31,35 @@ export function ProductStatisticsTable(){
 
     return(
         <StatGroup>
-        <Stat>
-            <StatLabel>Plantillas actuales</StatLabel>
-            <StatNumber>{totalRequests}</StatNumber>
-            <StatHelpText>
+          <div className='grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4'>
+        <Stat p={4} boxShadow="md" borderRadius="lg" bg="gray.700">
+            <StatLabel fontSize="lg" fontWeight="semibold">Plantillas actuales</StatLabel>
+            <StatNumber fontSize="3xl" fontWeight="bold">{totalRequests}</StatNumber>
+            <StatHelpText fontSize="sm" display="flex" alignItems="center">
+              <StatArrow type='increase' mr={1} />
+              23.36%
+              {/* relación con el mes pasado o algo así */}
+            </StatHelpText>
+          </Stat>
+          <Stat p={4} boxShadow="md" borderRadius="lg" bg="gray.700">
+            <StatLabel fontSize="lg" fontWeight="semibold">Plantillas vendidas</StatLabel>
+            <StatNumber fontSize="3xl" fontWeight="bold">{totalRequests}</StatNumber>
+            <StatHelpText fontSize="sm" display="flex" alignItems="center">
               <StatArrow type='increase' />
               23.36%
               {/* relación con el mes pasado o algo así */}
             </StatHelpText>
           </Stat>
-          <Stat>
-            <StatLabel>Plantillas vendidas</StatLabel>
-            <StatNumber>{totalRequests}</StatNumber>
-            <StatHelpText>
+          <Stat p={4} boxShadow="md" borderRadius="lg" bg="gray.700">
+            <StatLabel fontSize="lg" fontWeight="semibold">Total recaudado</StatLabel>
+            <StatNumber fontSize="3xl" fontWeight="bold">{`$ ${price}`}</StatNumber>
+            <StatHelpText fontSize="sm" display="flex" alignItems="center">
               <StatArrow type='increase' />
               23.36%
               {/* relación con el mes pasado o algo así */}
             </StatHelpText>
           </Stat>
-          <Stat>
-            <StatLabel>Total recaudado</StatLabel>
-            <StatNumber>{`$ ${price}`}</StatNumber>
-            <StatHelpText>
-              <StatArrow type='increase' />
-              23.36%
-              {/* relación con el mes pasado o algo así */}
-            </StatHelpText>
-          </Stat>
+          </div>
         </StatGroup>
     )
 }

@@ -1,6 +1,40 @@
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/react";
+import { OurTeam } from "./components/OurTeam";
 
 export default function AboutPage() {
+  const team = [
+    {
+      name: "Johana Baccei",
+      rol: "QA Analyst",
+      imageUrl: "https://media.licdn.com/dms/image/D4D03AQFOFDOIEkc4pA/profile-displayphoto-shrink_400_400/0/1678317652369?e=1708560000&v=beta&t=kqvVUjXlMA5nebzt2jYH937ORbnS3IrXfz98oVa1Ask",
+      linkedIn: "https://www.linkedin.com/in/johana-baccei-11b005248/"
+    },
+    {
+      name: "Julián Cadavid",
+      rol: "Project Manager",
+      imageUrl: "https://media.licdn.com/dms/image/D5603AQGOXAF0Ua3VHQ/profile-displayphoto-shrink_400_400/0/1701812598819?e=1708560000&v=beta&t=1rWYieINhFpOMR9p87baCK-wrbeHFxxV1Oz02cDbpD8",
+      linkedIn: "https://www.linkedin.com/in/juliancadavid07/"
+    },
+    {
+      name: "Arturo Guerra",
+      rol: "Software Developer",
+      imageUrl: "https://media.licdn.com/dms/image/D4E03AQF6S-A7AXxLUA/profile-displayphoto-shrink_400_400/0/1698800025568?e=1708560000&v=beta&t=3IR5SQ98ntKPB7tSYc8BVHkaEGEdT3q30jz1lrv77tU",
+      linkedIn: "https://www.linkedin.com/in/arturo-dev/"
+    },    
+    {
+      name: "Lisandro Salvarecci",
+      rol: "Software Developer",
+      imageUrl: "https://avatars.githubusercontent.com/u/47686025?v=4",
+      linkedIn: "https://www.linkedin.com/in/salvareschilisandro/"
+    },
+    {
+      name: "Pedro Sota",
+      rol: "Software Developer",
+      imageUrl: "https://avatars.githubusercontent.com/u/123599427?v=4",
+      linkedIn: "https://www.linkedin.com/in/pedroa-sota/"
+    },
+  ];
+
   return (
     <div className=' bg-sunglow-us flex flex-col min-h-screen font-common-font'>
       <main className='flex container mt-24 mx-auto'>
@@ -72,13 +106,9 @@ export default function AboutPage() {
                       <h1 className='text-3xl font-grotesk-font font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl/none'>
                         Nuestro equipo
                       </h1>
-                      <p className='mx-auto max-w-[700px] text-gray-500 md:text-xl dark:text-gray-400'>
-                        Nuestro equipo está formado por diseñadores y
-                        desarrolladores web experimentados que tienen una pasión
-                        por el diseño web. Estamos comprometidos a proporcionar
-                        un servicio de alta calidad que sea creativo, innovador
-                        y efectivo.
-                      </p>
+                      <div className="flex flex-wrap justify-center gap-4 p-3">
+                        {team.map((teammate) => (<OurTeam key={teammate.id} teammate={teammate} />))}
+                        </div>
                     </div>
                   </div>
                 </div>

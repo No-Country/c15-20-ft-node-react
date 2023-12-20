@@ -8,7 +8,7 @@ export function SalesStatistics(){
         <CardHeader>
           <Heading size='md' color="#ecbc4c">Ventas</Heading>
         </CardHeader>
-        <CardBody>
+        <CardBody display="flex" flexDirection="column" alignItems="center" justifyContent="center">
           <SalesStatisticsGraph />
         </CardBody>
       </Card>

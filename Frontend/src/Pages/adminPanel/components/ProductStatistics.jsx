@@ -10,7 +10,7 @@ export function ProductStatistics() {
       </CardHeader>
       <CardBody>
         <ProductStatisticsTable />
-        <Divider colorScheme="yellow" />
+        <Divider borderColor="yellow" my="4" />
         <BestProduct />
       </CardBody>
     </Card>
