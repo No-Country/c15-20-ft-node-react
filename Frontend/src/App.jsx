@@ -23,6 +23,7 @@ import { useEffect } from "react";
 function App() {
   const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
   const login = useAuthStore((state) => state.login);
+  const role = useAuthStore((state) => state.role);
   const setRole = useAuthStore((state) => state.setRole);
   const setPersonalInfo = useAuthStore((state) => state.setPersonalInfo);
   const setProductsPurchased = useAuthStore(
@@ -37,16 +38,19 @@ function App() {
       const token = authStorage.state.token;
       login(token);
       const decodedToken = jwtDecode(token);
+      console.log(decodedToken);
       setRole(decodedToken.role);
       setPersonalInfo(
         decodedToken.name,
         decodedToken.lastname,
         decodedToken.email
       );
+      setRole(decodedToken.role ?? "admin");
       setProductsPurchased(decodedToken.products);
       setServicesPurchased(decodedToken.services);
+      console.log(role);
     }
-  }, []);
+  }, [isAuthenticated]);
   const router = createBrowserRouter([
     {
       element: <Layout />,
