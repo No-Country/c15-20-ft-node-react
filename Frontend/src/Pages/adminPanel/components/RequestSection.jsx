@@ -1,23 +1,28 @@
 import { useState, useEffect } from "react";
 import { Table, Thead, Tbody, Tr, Th, TableContainer, Button, Box } from '@chakra-ui/react';
 import { Request } from "./Request";
+import useServiceStore from "../../../store/serviceStore";
 
 export function RequestSection() {
-  const [requestsDb, setRequestsDb] = useState([]);
+  const { fetchServices, services } = useServiceStore(state => state);
 
   useEffect(() => {
-    fetch('https://backend-c1520-8eb3ff14ed9d.herokuapp.com/services/')
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        return response.json();
-      })
-      .then(data => setRequestsDb(data))
-      .catch(error => {
-        console.error('There has been a problem with your fetch operation:', error);
-      });
-  }, []);
+    fetchServices();
+  }, [fetchServices, services]);
+
+  // useEffect(() => {
+  //   fetch('https://backend-c1520-8eb3ff14ed9d.herokuapp.com/services/')
+  //     .then(response => {
+  //       if (!response.ok) {
+  //         throw new Error('Network response was not ok');
+  //       }
+  //       return response.json();
+  //     })
+  //     .then(data => setRequestsDb(data))
+  //     .catch(error => {
+  //       console.error('There has been a problem with your fetch operation:', error);
+  //     });
+  // }, []);
 
   return (
     <Box p="4" bg="gray.800" color="white" borderRadius="md" boxShadow="md">
@@ -31,13 +36,12 @@ export function RequestSection() {
             <Tr>
               <Th>Título</Th>
               <Th>Descripción</Th>
-              <Th>Precio</Th>
-              <Th>Enlace imagen</Th>
+              <Th>Precio (USD)</Th>
               <Th>Acciones</Th>
             </Tr>
           </Thead>
           <Tbody>
-            {requestsDb.map((request, index) => (
+            {services.map((request, index) => (
               <Request key={index} request={request} />
             ))}
           </Tbody>

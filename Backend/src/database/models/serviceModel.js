@@ -1,16 +1,12 @@
 const { Schema, model } = require('mongoose');
 
 const serviceSchema = new Schema({
-    imageUrl: {
-        type: String,
-        required: true
-    },
     title: {
         type: String,
         required: true
     },
     description: {
-        type: String,
+        type: Array,
         required: true
     },
     price: {

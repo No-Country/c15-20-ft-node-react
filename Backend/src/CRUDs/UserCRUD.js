@@ -36,22 +36,6 @@ const findUserById = async (id) => {
   }
 };
 
-// // define a schema
-// const animalSchema = new Schema({ name: String, type: String },
-//     {
-//     // Assign a function to the "methods" object of our animalSchema through schema options.
-//     // By following this approach, there is no need to create a separate TS type to define the type of the instance functions.
-//       methods: {
-//         findSimilarTypes(cb) {
-//           return mongoose.model('Animal').find({ type: this.type }, cb);
-//         }
-//       }
-//     });
-//   // Or, assign a function to the "methods" object of our animalSchema
-//   animalSchema.methods.findSimilarTypes = function(cb) {
-//     return mongoose.model('Animal').find({ type: this.type }, cb);
-//   };
-
 const deleteUserById = async (id) => {
   try {
     const result = await userModel.deleteOne({ _id: id });
