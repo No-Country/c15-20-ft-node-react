@@ -13,7 +13,7 @@ export default function HomePage() {
   return (
     <div className='w-full py-12 md:py-24 lg:py-32 xl:py-48'>
       <section className='w-full flex flex-col items-center justify-center text-white'>
-        <h1 className='text-6xl font-title-secondary font-bold my-8'>
+        <h1 className=' text-wrap self-center text-6xl font-title-secondary font-bold my-8'>
           Bi<span className=' italic'>e</span>nvenid
           <span className=' italic'>o</span> a{" "}
           <span className=' font-grotesk-font text-8xl text-transparent bg-gradient-to-r bg-clip-text from-sunglow-us to-tea-rose'>
@@ -99,7 +99,7 @@ export default function HomePage() {
             </section>
           </div>
         </div>
-        <section className='grid grid-cols-2 gap-4 justify-items-center mt-24'>
+        <section className='flex flex-wrap gap-4 justify-center justify-items-center mt-24'>
           <ContactForm />
           <Faq />
         </section>
