@@ -21,6 +21,14 @@ const serviceOrderSchema = new Schema({
         type: Date,
         required: true
     },
+    price: {
+        type: Number,
+        required: true
+    },
+    orderType: {
+        type: String,
+        required: true
+    }
 });
 
 const serviceOrderModel = model('serviceOrder', serviceOrderSchema);
