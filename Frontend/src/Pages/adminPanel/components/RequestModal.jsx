@@ -1,19 +1,25 @@
 import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton, useDisclosure, FormControl, FormLabel, Input, Button } from '@chakra-ui/react';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
+import useServiceStore from "../../../store/serviceStore";
+import useEditableStore from '../../../store/editableStore';
 
-export function RequestModal() {
+export function RequestModal(props) {
+    const updateService = useServiceStore(state => state.updateService);
+    const {id, title, description, price} = props.request;
+    const { updateEditable, editable } = useEditableStore(state => state);
     const { isOpen, onOpen, onClose } = useDisclosure();
-  
     const initialRef = React.useRef(null);
     const finalRef = React.useRef(null);
 
-    const [editedRequest, setEditedRequest] = useState({
-        title: "",
-    });
+    console.log(props.request);
+
+    useEffect(() => {
+        updateEditable({...editable, title, description, price});
+    }, [props.request]);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setEditedRequest({ ...editedRequest, [name]: value });
+        updateEditable({ ...editable, [name]: value });
     };
 
     const handleUpdate = async (id) => {
@@ -22,16 +28,20 @@ export function RequestModal() {
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify(editedRequest),
+            body: JSON.stringify({
+                title: editable.title,
+                description: editable.description,
+                price: editable.price,
+            }),
         }).then((response) => {
             if (!response.ok) {
                 console.log(response);
                 alert("Error al actualizar servicio");
             } else {
+                updateService(id);
                 alert("Servicio actualizado");
             }
         });
-        handleEdit();
     };
   
     return (
@@ -45,26 +55,29 @@ export function RequestModal() {
             <ModalBody pb={6}>
             <FormControl colorScheme="yellow">
                 <FormLabel>Título</FormLabel>
-                <Input ref={initialRef} placeholder='Título' value={editedRequest.title} />
+                <Input ref={initialRef} name='title' placeholder='Título' value={editable.title} onChange={handleChange} />
             </FormControl>
 
             <FormControl mt={4}>
                 <FormLabel>Descripción</FormLabel>
-                <Input placeholder='Descripción' />
+                <Input placeholder='Descripción' name='description' />
             </FormControl>
 
             <FormControl mt={4}>
                 <FormLabel>Precio</FormLabel>
-                <Input placeholder='Precio' />
+                <Input placeholder='Precio' name='price'/>
             </FormControl>
 
             <FormControl mt={4}>
                 <FormLabel>URL de la imagen</FormLabel>
-                <Input placeholder='URL de la imagen' />
+                <Input placeholder='URL de la imagen' name='imageUrl'/>
             </FormControl>
             </ModalBody>
             <ModalFooter>
-              <Button colorScheme='yellow' mr={3}>Guardar</Button>
+              <Button colorScheme='yellow' mr={3} onClick={(id) => {
+                handleUpdate(id);
+                onClose();
+              }}>Guardar</Button>
               <Button onClick={onClose}>Cancelar</Button>
             </ModalFooter>
           </ModalContent>
