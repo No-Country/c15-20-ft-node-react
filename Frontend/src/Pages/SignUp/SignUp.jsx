@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { PSW_REGEX } from "./Register";
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import InputCheckbox from "../Login/components/InputCheckbox";
 import SelectCountry from "./components/SelectCountry";
 import Button from "../../components/Button";
@@ -15,7 +15,7 @@ export default function SignUp() {
   const [showPassword, setShowPassword] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [succes, setSucces] = useState(false);
-
+  const navigate = useNavigate();
   const disabledCheck =
     password && repeatPassword && password !== repeatPassword;
 
@@ -62,8 +62,10 @@ export default function SignUp() {
       );
       if (response.ok) {
         const data = await response.json();
-        alert("Usuario creado!");
         setSucces(true);
+        setTimeout(() => {
+          navigate("/login");
+        }, 3000);
       } else {
         const error = await response.json();
         console.log(error);
@@ -75,9 +77,11 @@ export default function SignUp() {
   };
 
   return (
-    <div className='flex w-100 bg-white min-h-screen justify-center pt-6'>
-      <section className='shadow-lg rounded-lg text-black  border border-gray-300 flex flex-col w-fit h-fit justify-evenly px-6 py-4'>
-        <h1 className=' self-center text-lg font-bold'>Crea tu cuenta</h1>
+    <div className='flex w-100 min-h-screen justify-center py-24 bg-teal-us font-common-font'>
+      <section className='shadow-lg rounded-lg bg-slate-50 text-black  border border-gray-300 flex flex-col w-fit h-fit justify-evenly px-6 py-4'>
+        <h1 className=' self-center text-lg font-bold font-grotesk-font pb-4'>
+          Crea tu cuenta
+        </h1>
         <div className='flex flex-row justify-around w-4/5 mx-auto'>
           <button className='border rounded bg-pink-300 px-4 py-1'>
             Google
@@ -177,7 +181,11 @@ export default function SignUp() {
               Las contraseñas no coinciden
             </p>
           )}
-          {succes && <Navigate to='/login' />}
+          {succes && (
+            <p className='text-green-500 text-sm self-start transition-all'>
+              Usuario creado
+            </p>
+          )}
         </form>
       </section>
     </div>

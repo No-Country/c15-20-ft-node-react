@@ -11,18 +11,12 @@ export default function CardService({ service, ...props }) {
           <span className='text-4xl font-bold'>${price}</span>/ mes
         </div>
         <ul className='mt-4 space-y-2'>
-          <li className='flex items-center'>
-            <IconCheck className='text-white text-xs bg-green-500 rounded-full mr-2 p-1' />
-            {description}
-          </li>
-          <li className='flex items-center'>
-            <IconCheck className='text-white text-xs bg-green-500 rounded-full mr-2 p-1' />
-            Registro de dominio y hosting
-          </li>
-          <li className='flex items-center'>
-            <IconCheck className='text-white text-xs bg-green-500 rounded-full mr-2 p-1' />
-            Soporte técnico básico
-          </li>
+          {/* {description.map((description) => (
+            <li className='flex items-center' key={description}>
+              <IconCheck className='text-white text-xs bg-green-500 rounded-full mr-2 p-1' />
+              {description}
+            </li>
+          ))} */}
         </ul>
       </div>
       <div className='mt-6'>
