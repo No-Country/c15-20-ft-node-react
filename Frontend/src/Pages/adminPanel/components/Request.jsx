@@ -7,6 +7,8 @@ export function Request(props) {
     const { request } = props;
     const [showFullDescription, setShowFullDescription] = useState(false);
 
+    console.log(request.description)
+
     const handleDelete = async (id) => {
         // Agregar lógica para eliminar solicitud
     };
@@ -30,11 +32,11 @@ export function Request(props) {
             <Td>
             {/* <Text>{getDescriptionPreview()}</Text><br /> */}
             <Text>{request.description}</Text><br />
-                {request.description.length > 20 && (
+                {/* {request.description.length > 20 && (
                     <Button size="sm" colorScheme="yellow" onClick={toggleDescription}>
                         {showFullDescription ? "Ver menos" : "Ver más"}
                     </Button>
-                )}
+                )} */}
                 </Td>
             <Td>{`$ ${request.price}`}</Td>
             <Td>

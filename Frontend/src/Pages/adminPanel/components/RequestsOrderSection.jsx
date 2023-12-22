@@ -5,7 +5,7 @@ import { Table, Thead, Tbody, Tr, Th, TableContainer, Box } from '@chakra-ui/rea
 export function RequestsOrderSection() {
     const [serviceDb, setServiceDb] = useState([]);
     useEffect(() => {
-        fetch('https://backend-c1520-8eb3ff14ed9d.herokuapp.com/service-orders/')
+        fetch('https://web-production-2ea0.up.railway.app/service-orders/')
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Network response was not ok');

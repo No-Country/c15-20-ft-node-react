@@ -21,7 +21,7 @@ export default function Login() {
     event.preventDefault();
     try {
       const response = await fetch(
-        "https://backend-c1520-8eb3ff14ed9d.herokuapp.com/users/login/",
+        "https://web-production-2ea0.up.railway.app/users/login/",
         {
           method: "POST",
           headers: {

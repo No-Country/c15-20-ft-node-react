@@ -1,29 +1,27 @@
 import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton, useDisclosure, FormControl, FormLabel, Input, Button } from '@chakra-ui/react';
 import React, {useEffect, useState} from 'react';
 import useServiceStore from "../../../store/serviceStore";
-import useEditableStore from '../../../store/editableStore';
 
 export function RequestModal(props) {
     const updateService = useServiceStore(state => state.updateService);
     const {id, title, description, price} = props.request;
-    const { updateEditable, editable } = useEditableStore(state => state);
     const { isOpen, onOpen, onClose } = useDisclosure();
     const initialRef = React.useRef(null);
     const finalRef = React.useRef(null);
 
-    console.log(props.request);
-
-    useEffect(() => {
-        updateEditable({...editable, title, description, price});
-    }, [props.request]);
+    const [editable, setEditable] = useState({
+        title: title || '',
+        description: description || '',
+        price: price || '',
+    });
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        updateEditable({ ...editable, [name]: value });
+        setEditable({ ...editable, [name]: value });
     };
 
     const handleUpdate = async (id) => {
-        fetch(`https://backend-c1520-8eb3ff14ed9d.herokuapp.com/services/${id}`, {
+        fetch(`https://web-production-2ea0.up.railway.app/services/${id}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
