@@ -30,7 +30,7 @@ export function ProductOrderSection(){
                         <Th>Fecha de compra</Th>
                         <Th>Método de pago</Th>
                         <Th>Productos</Th>
-                        <Th>Precio total</Th>
+                        <Th>Precio total (USD)</Th>
                         <Th>Acciones</Th>
                     </Tr>
                 </Thead>

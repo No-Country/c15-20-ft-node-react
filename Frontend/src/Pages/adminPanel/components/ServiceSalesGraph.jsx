@@ -14,8 +14,8 @@ export function ServiceSalesGraph() {
 
   return (
     <Box p={4} rounded="md" shadow="md" textAlign="center" bg="gray.700">
-    <Text fontSize="xl" fontWeight="bold" mb={4}>Mejor Producto</Text>
-    <Text>Hola</Text>
+    <Text fontSize="xl" fontWeight="bold" mb={4}>Mejor Servicio</Text>
+    <Text>🔘 Premium </Text>
 </Box>
   );
 }

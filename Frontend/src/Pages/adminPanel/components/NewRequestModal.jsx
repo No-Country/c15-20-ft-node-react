@@ -2,17 +2,16 @@ import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody,
 import React, {useEffect, useState} from 'react';
 import useServiceStore from "../../../store/serviceStore";
 
-export function RequestModal(props) {
-    const updateService = useServiceStore(state => state.updateService);
-    const {_id, title, description, price} = props.request;
+export function NewRequestModal() {
+    const addService = useServiceStore(state => state.addService);
     const { isOpen, onOpen, onClose } = useDisclosure();
     const initialRef = React.useRef(null);
     const finalRef = React.useRef(null);
 
     const [editable, setEditable] = useState({
-        title: title || '',
-        // description: description || '',
-        price: price || '',
+        title: '',
+        description: '',
+        price: '',
     });
 
     const handleChange = (e) => {
@@ -20,31 +19,36 @@ export function RequestModal(props) {
         setEditable({ ...editable, [name]: value });
     };
 
-    const handleUpdate = async (_id) => {
-        fetch(`https://web-production-2ea0.up.railway.app/services/${_id}`, {
-            method: "PUT",
+    const handleCreate = async () => {
+        fetch(`https://web-production-2ea0.up.railway.app/services/`, {
+            method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
                 title: editable.title,
-                // description: editable.description.split(", "),
+                description: editable.description.split(", ") || [editable.description],
                 price: editable.price,
             }),
         }).then((response) => {
             if (!response.ok) {
                 console.log(response);
-                alert("Error al actualizar servicio");
+                alert("Error al crear servicio");
             } else {
-                updateService(_id);
-                console.log(response, _id);
-                alert("Servicio actualizado");
+                const newService = async () => await response.json();
+                addService({
+                    title: editable.title,
+                    description: editable.description.split(", ") || [editable.description],
+                    price: editable.price,
+                });
+                console.log(response, newService());
+                alert("Servicio creado");
             }
         });    };
   
     return (
       <>
-      <Button size="sm" colorScheme="yellow" onClick={onOpen}>✍️</Button>  
+      <Button colorScheme="yellow" onClick={onOpen}>Agregar servicio</Button>  
         <Modal initialFocusRef={initialRef} finalFocusRef={finalRef} isOpen={isOpen} onClose={onClose} colorScheme='yellow'>
           <ModalOverlay />
           <ModalContent>
@@ -56,10 +60,10 @@ export function RequestModal(props) {
                 <Input ref={initialRef} name='title' placeholder='Título' value={editable.title} onChange={handleChange} />
             </FormControl>
 
-            {/* <FormControl mt={4}>
+            <FormControl mt={4}>
                 <FormLabel>Descripción</FormLabel>
                 <Input placeholder='Descripción' name='description' value={editable.description} onChange={handleChange} />
-            </FormControl> */}
+            </FormControl>
 
             <FormControl mt={4}>
                 <FormLabel>Precio</FormLabel>
@@ -68,7 +72,7 @@ export function RequestModal(props) {
             </ModalBody>
             <ModalFooter>
               <Button colorScheme='yellow' mr={3} onClick={() => {
-                handleUpdate(_id);
+                handleCreate();
                 onClose();
               }}>Guardar</Button>
               <Button onClick={onClose}>Cancelar</Button>

@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Table, Thead, Tbody, Tr, Th, TableContainer, Button, Box } from '@chakra-ui/react';
 import { Request } from "./Request";
 import useServiceStore from "../../../store/serviceStore";
+import { NewRequestModal } from "./NewRequestModal";
 
 export function RequestSection() {
   const { fetchServices, services } = useServiceStore(state => state);
@@ -28,7 +29,7 @@ export function RequestSection() {
     <Box p="4" bg="gray.800" color="white" borderRadius="md" boxShadow="md">
       <div className="flex justify-between items-center mb-4">
         <h1 className="text-xl font-semibold">Maneja tus servicios</h1>
-        <Button colorScheme="yellow">Agregar servicio</Button>
+        < NewRequestModal />
       </div>
       <TableContainer>
         <Table variant="simple" colorScheme="yellow">

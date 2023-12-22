@@ -6,16 +6,24 @@ import { ProductOrderModal } from "./ProductOrderModal";
 export function ProductOrder(props) {
     const { productOrder } = props;
 
+    console.log(productOrder);
+
     const handleDelete = async (id) => {
 
     };
 
+const formattedDate = new Date(productOrder.purchaseDate).toLocaleDateString('es-ES', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
+
     return (
         <Tr>
             <Td>{productOrder.clientId}</Td>
-            <Td>{productOrder.purchaseDate}</Td>
+            <Td>{formattedDate}</Td>
             <Td>{productOrder.paymentMethod}</Td>
-            <Td>{productOrder.products.map((product) => product.name)}</Td>
+            <Td>{productOrder.products.map((product, index) => `${index+1}. ${product.title} `)}</Td>
             <Td>{productOrder.totalPrice}</Td>
             <Td>
                 <HStack spacing={2}>

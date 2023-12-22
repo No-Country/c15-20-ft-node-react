@@ -13,7 +13,7 @@ const useProductOrderStore = create((set) => ({
       productOrders: state.productOrders.filter((order) => order.id !== productOrderId),
     })),
     updateProductOrder: (productOrderId, productOrder) => 
-    set((state) => ({productOrders: state.productOrders.map((order) => order._id !== productOrderId ? order : productOrder )})),
+    set((state) => ({productOrders: state.productOrders.map((order) => order._id !== productOrderId ? order : {...order, productOrder} )})),
 }));
 
 export default useProductOrderStore;

@@ -42,7 +42,7 @@ export function ProductStatisticsTable(){
             <StatNumber fontSize="3xl" fontWeight="bold" color="#ecbc4c">{totalProductOrders}</StatNumber>
             <StatHelpText fontSize="sm" display="flex" alignItems="center">
               <StatArrow type='increase' />
-              23.36%
+              40%
             </StatHelpText>
           </Stat>
           <Stat p={4} boxShadow="md" borderRadius="lg" bg="gray.700">
@@ -50,7 +50,7 @@ export function ProductStatisticsTable(){
             <StatNumber fontSize="3xl" fontWeight="bold" color="#ecbc4c">{`$ ${totalPrice}`}</StatNumber>
             <StatHelpText fontSize="sm" display="flex" alignItems="center">
               <StatArrow type='increase' />
-              23.36%
+              100%
               {/* relación con el mes pasado o algo así */}
             </StatHelpText>
           </Stat>

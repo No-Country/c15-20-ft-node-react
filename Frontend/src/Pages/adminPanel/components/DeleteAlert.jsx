@@ -1,10 +1,32 @@
 import React from "react";
 import { AlertDialog, AlertDialogBody, AlertDialogFooter, AlertDialogHeader, AlertDialogContent, AlertDialogOverlay, Button, useDisclosure } from '@chakra-ui/react';
+import useServiceStore from "../../../store/serviceStore";
 
 export function DeleteAlert(props){
-  const { name, id, handleDelete } = props;
+  const { name, id } = props;
   const { isOpen, onOpen, onClose } = useDisclosure();
   const cancelRef = React.useRef();
+  const removeService = useServiceStore(state => state.removeService);
+
+  console.log(id);
+  
+
+  const handleDelete = async (id) => {
+    fetch(`https://web-production-2ea0.up.railway.app/services/${id}`, {
+      method: "DELETE",
+      headers: {
+          "Content-Type": "application/json",
+      },
+  }).then((response) => {
+      if (!response.ok) {
+          console.log(response);
+          alert("Error al eliminar servicio");
+      } else {
+          removeService(id);
+          alert("Servicio eliminado");
+      }
+  }); 
+};
 
   return(
     <>

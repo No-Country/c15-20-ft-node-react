@@ -13,7 +13,7 @@ const useServiceStore = create((set) => ({
       services: state.services.filter((service) => service._id !== serviceId),
     })),
     updateService: (serviceId, updatedService) => 
-    set((state) => ({services: state.services.map((service) => service._id !== serviceId ? service : updatedService )})),
+    set((state) => ({services: state.services.map((service) => service._id !== serviceId ? service : {... service, updatedService} )})),
 }));
 
 export default useServiceStore;

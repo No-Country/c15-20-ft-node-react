@@ -38,7 +38,6 @@ function App() {
       const token = authStorage.state.token;
       login(token);
       const decodedToken = jwtDecode(token);
-      console.log(decodedToken);
       setPersonalInfo(
         decodedToken.name,
         decodedToken.lastname,
@@ -47,7 +46,6 @@ function App() {
       setRole(decodedToken.rol);
       setProductsPurchased(decodedToken.products);
       setServicesPurchased(decodedToken.services);
-      console.log(role);
     }
   }, [isAuthenticated]);
   const router = createBrowserRouter([

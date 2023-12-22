@@ -10,13 +10,25 @@ export function RequestOrder(props) {
         console.log(id);
     };
 
+    const startDate = new Date(request.startDate).toLocaleDateString('es-ES', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+      });
+
+      const deliveryDate = new Date(request.deliveryDate).toLocaleDateString('es-ES', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+      });
+
     return (
 <Tr>
-            <Td>{request.name}</Td>
+            <Td>{request.orderType}</Td>
             <Td>{request.clientId}</Td>
             <Td>{request.guiltId}</Td>
-            <Td>{request.startDate}</Td>
-            <Td>{request.deliveryDate}</Td>
+            <Td>{startDate}</Td>
+            <Td>{deliveryDate}</Td>
             <Td>
                 <HStack spacing={2}>
                     <>

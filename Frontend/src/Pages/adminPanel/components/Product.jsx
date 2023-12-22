@@ -9,13 +9,17 @@ export function Product(props) {
 
     };
 
+    const shortenImageUrl = (url) => {
+        return url.length > 15 ? `${url.substring(0, 15)}...` : url;
+    };
+
     return (
         <Tr>
             <Td>{product.title}</Td>
             <Td>{product.description}</Td>
             <Td>{product.tags}</Td>
             <Td>{product.price}</Td>
-            <Td>{product.imageUrl}</Td>
+            <Td>{shortenImageUrl(product.imageUrl)}</Td>
             <Td>
                 <HStack spacing={2}>
                     <>

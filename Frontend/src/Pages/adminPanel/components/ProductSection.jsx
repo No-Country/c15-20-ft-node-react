@@ -33,7 +33,7 @@ export function ProductSection(){
                             <Th>Título</Th>
                             <Th>Descripción</Th>
                             <Th>Categorías</Th>
-                            <Th>Precio</Th>
+                            <Th>Precio (USD)</Th>
                             <Th>Url imagen</Th>
                             <Th>Acciones</Th>
                         </Tr>

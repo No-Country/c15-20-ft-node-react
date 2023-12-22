@@ -13,7 +13,7 @@ const useServiceOrderStore = create((set) => ({
       serviceOrders: state.serviceOrders.filter((order) => order._id !== serviceOrderId),
     })),
     updateServiceOrder: (serviceOrderId, serviceOrder) => 
-    set((state) => ({serviceOrders: state.serviceOrders.map((order) => order._id !== serviceOrderId ? order : serviceOrder )})),
+    set((state) => ({serviceOrders: state.serviceOrders.map((order) => order._id !== serviceOrderId ? order : {...order, serviceOrder} )})),
 }));
 
 export default useServiceOrderStore;

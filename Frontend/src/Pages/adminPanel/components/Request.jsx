@@ -7,43 +7,37 @@ export function Request(props) {
     const { request } = props;
     const [showFullDescription, setShowFullDescription] = useState(false);
 
-    console.log(request.description)
-
-    const handleDelete = async (id) => {
-        // Agregar lógica para eliminar solicitud
+    const toggleDescription = () => {
+        setShowFullDescription(!showFullDescription);
     };
 
-    // const toggleDescription = () => {
-    //     setShowFullDescription(!showFullDescription);
-    // };
+    const getDescriptionPreview = () => {
+        const maxLength = 20;
+        const descriptionString = Array.isArray(request.description) ? request.description.join(', ') : request.description;
+        if (descriptionString.length <= maxLength || showFullDescription) {
+            return descriptionString;
+        }
+        return `${descriptionString.substring(0, maxLength)}...`;
+    };
 
-    // const getDescriptionPreview = () => {
-    //     const maxLength = 20;
-    //     const descriptionString = request.description.join(', ');
-    //     if (descriptionString.length <= maxLength || showFullDescription) {
-    //         return descriptionString;
-    //     }
-    //     return `${descriptionString.substring(0, maxLength)}...`;
-    // };
 
     return (
         <Tr>
             <Td>{request.title}</Td>
             <Td>
-            {/* <Text>{getDescriptionPreview()}</Text><br /> */}
-            <Text>{request.description}</Text><br />
-                {/* {request.description.length > 20 && (
+            <Text>{getDescriptionPreview()}</Text><br />
+                {request.description.join().length > 20 && (
                     <Button size="sm" colorScheme="yellow" onClick={toggleDescription}>
                         {showFullDescription ? "Ver menos" : "Ver más"}
                     </Button>
-                )} */}
+                )}
                 </Td>
             <Td>{`$ ${request.price}`}</Td>
             <Td>
                 <HStack spacing={2}>
                     <>
                         <RequestModal request={request} />
-                        <DeleteAlert name="Servicio" id={request._id} handleDelete={handleDelete} />
+                        <DeleteAlert name="Servicio" id={request._id} />
                     </>
                 </HStack>
             </Td>
