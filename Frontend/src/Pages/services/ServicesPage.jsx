@@ -7,7 +7,7 @@ export default function ServicesPage() {
   const fetchServices = async () => {
     try {
       const response = await fetch(
-        "https://backend-c1520-8eb3ff14ed9d.herokuapp.com/services/",
+        "https://web-production-2ea0.up.railway.app/services/",
         {
           method: "GET",
           headers: {

@@ -17,7 +17,7 @@ export function ProductModal() {
     };
 
     const handleUpdate = async (id) => {
-        fetch(`https://backend-c1520-8eb3ff14ed9d.herokuapp.com/products/${id}`, {
+        fetch(`https://web-production-2ea0.up.railway.app/products/${id}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
