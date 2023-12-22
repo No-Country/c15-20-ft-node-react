@@ -1,7 +1,7 @@
 {
     "templates": [
         {
-            "imageUrl": "https://webzillaco.com/wp-content/uploads/2023/09/7-300x300.png",
+            "imageUrl": "https://astro.build/_astro/blogster-bubblegum-hero@2x.XIs_1VID.webp",
             "title": "App Nativa Átomo",
             "description": "Desarrollo de Apps",
             "tags": [
@@ -15,7 +15,7 @@
             "price": 5000.00
         },
         {
-            "imageUrl": "https://webzillaco.com/wp-content/uploads/2023/09/6-300x300.png",
+            "imageUrl": "https://astro.build/_astro/astrowind-hero@2x.KFR6CL8e.webp",
             "title": "App Web Neutrón",
             "description": "Desarrollo de Apps",
             "tags": [
@@ -29,7 +29,7 @@
             "price": 1500000.00
         },
         {
-            "imageUrl": "https://webzillaco.com/wp-content/uploads/2023/09/5-1-300x300.png",
+            "imageUrl": "https://astro.build/_astro/flowbite-hero@2x.XfdGOJoC.webp",
             "title": "App Web Positrón",
             "description": "Desarrollo de Apps",
             "tags": [

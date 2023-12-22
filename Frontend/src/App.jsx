@@ -39,13 +39,12 @@ function App() {
       login(token);
       const decodedToken = jwtDecode(token);
       console.log(decodedToken);
-      setRole(decodedToken.role);
       setPersonalInfo(
         decodedToken.name,
         decodedToken.lastname,
         decodedToken.email
       );
-      setRole(decodedToken.role ?? "admin");
+      setRole(decodedToken.rol);
       setProductsPurchased(decodedToken.products);
       setServicesPurchased(decodedToken.services);
       console.log(role);

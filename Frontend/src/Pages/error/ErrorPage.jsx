@@ -13,7 +13,7 @@ export default function ErrorPage() {
           <div className='text-center sm:text-left mt-4 sm:mt-0'>
             <h2 className='text-xl leading-tight'>Error 404</h2>
             <p className='text-sm leading-tight text-gray-600'>
-              The page you are looking for does not exist.
+              La página que estás buscando no existe.
             </p>
 
             <Button
@@ -21,7 +21,7 @@ export default function ErrorPage() {
               onClick={handleClick}
             >
               <>
-                Return to Homepage
+                Regresar a la página principal
                 <ArrowLeftIcon className='ml-2 h-4 w-4' />
               </>
             </Button>
