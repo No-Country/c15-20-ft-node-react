@@ -1,7 +1,7 @@
 {
     "templates": [
         {
-            "imageUrl": "https://astro.build/_astro/blogster-bubblegum-hero@2x.XIs_1VID.webp",
+            "imageUrl": "https://img.freepik.com/psd-gratis/concepto-paginas-aterrizaje-veterinarias_23-2148451973.jpg?w=1380&t=st=1703265231~exp=1703265831~hmac=59e8540d0f4fdad5a23c481d89fccd07ec80a6a8c72f2922072593c4c119305b",
             "title": "App Nativa Átomo",
             "description": "Desarrollo de Apps",
             "tags": [
@@ -15,7 +15,7 @@
             "price": 5000.00
         },
         {
-            "imageUrl": "https://astro.build/_astro/astrowind-hero@2x.KFR6CL8e.webp",
+            "imageUrl": "https://img.freepik.com/psd-gratis/varias-plantillas-web-e-imprimibles-pantalla_23-2148450117.jpg?w=1380&t=st=1703265282~exp=1703265882~hmac=83c707028404147a1abcdfb198638c912f548fdbf1cc1495f47309b897195e40",
             "title": "App Web Neutrón",
             "description": "Desarrollo de Apps",
             "tags": [
@@ -29,7 +29,7 @@
             "price": 1500000.00
         },
         {
-            "imageUrl": "https://astro.build/_astro/flowbite-hero@2x.XfdGOJoC.webp",
+            "imageUrl": "https://img.freepik.com/psd-gratis/plantilla-sitio-web-diseno-interfaz-usuario_23-2149182791.jpg?w=1380&t=st=1703265334~exp=1703265934~hmac=bdb0cc324e4d267fda750aeed1e324ca698730780f9c355ebe29cacd64fe6bce",
             "title": "App Web Positrón",
             "description": "Desarrollo de Apps",
             "tags": [
@@ -43,7 +43,7 @@
             "price": 1200000.00
         },
         {
-            "imageUrl": "https://webzillaco.com/wp-content/uploads/2023/09/4-1-300x300.png",
+            "imageUrl": "https://img.freepik.com/psd-gratis/plantilla-comida-art-deco-neon-pastel_23-2149052966.jpg?w=1380&t=st=1703265357~exp=1703265957~hmac=4cb2c61bf2df54bce5c24815368e4a85b00a4b22568f30b932896666ce39633c",
             "title": "Campaña de ADS Átomo",
             "description": "Marketing Digital",
             "tags": [
@@ -54,7 +54,7 @@
             "price": 1200000.00
         },
         {
-            "imageUrl": "https://webzillaco.com/wp-content/uploads/2023/09/12-300x300.png",
+            "imageUrl": "https://astro.build/_astro/blogster-bubblegum-hero@2x.XIs_1VID.webp",
             "title": "Combo Átomo",
             "description": "Combos",
             "tags": [
@@ -65,7 +65,7 @@
             "price": 3500000.00
         },
         {
-            "imageUrl": "https://webzillaco.com/wp-content/uploads/2023/09/8-300x300.png",
+            "imageUrl": "https://astro.build/_astro/astrowind-hero@2x.KFR6CL8e.webp",
             "title": "Combo Neutrón",
             "description": "Combos",
             "tags": [

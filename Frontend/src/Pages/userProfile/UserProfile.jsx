@@ -20,7 +20,7 @@ export default function UserProfile() {
     event.preventDefault();
     try {
       const response = await fetch(
-        "https://backend-c1520-8eb3ff14ed9d.herokuapp.com/users/change-password/",
+        "https://web-production-2ea0.up.railway.app/users/change-password/",
         {
           method: "PUT",
           headers: {

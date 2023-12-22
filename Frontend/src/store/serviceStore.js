@@ -3,7 +3,7 @@ import { create } from "zustand";
 const useServiceStore = create((set) => ({
   services: [],
   fetchServices: async () => {
-    const response = await fetch('https://backend-c1520-8eb3ff14ed9d.herokuapp.com/services/')
+    const response = await fetch('https://web-production-2ea0.up.railway.app/services/')
     set({ services: await response.json() })
   },
   addService: (service) =>
