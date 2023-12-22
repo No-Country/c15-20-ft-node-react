@@ -12,7 +12,10 @@ export default function CardProduct({
 }) {
   return (
     <li key={title} className='flex flex-col w-auto gap-2'>
-      <img className='rounded-md hover:scale-[1.01]' src={imageUrl} />
+      <img
+        className='rounded-md aspect-square object-cover object-center hover:scale-[1.01]'
+        src={imageUrl}
+      />
       <p className='text-sm'>{description}</p>
       <h4 className='font-semibold text-lg'>{title}</h4>
       <div className='flex items-center gap-4'>

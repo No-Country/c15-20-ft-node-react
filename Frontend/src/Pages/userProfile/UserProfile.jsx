@@ -4,6 +4,8 @@ import Button from "../../components/Button";
 import { useState } from "react";
 import { PSW_REGEX } from "../SignUp/Register";
 import useAuthStore from "../../store/authStore";
+import PurchasedItem from "./components/PurchasedItem";
+import PurchasedService from "./components/PurchasedService";
 
 export default function UserProfile() {
   const [password, setPassword] = useState("");
@@ -136,24 +138,31 @@ export default function UserProfile() {
             <p>Consulta y gestiona tus compras.</p>
           </CardHeader>
           <CardBody className='space-y-4'>
-            {productsPurchased?.length > 0 ? (
-              productsPurchased.map((product) => {
-                return (
-                  <li key={product} className='font-common-font'>
-                    {product}
-                  </li>
-                );
-              })
-            ) : (
-              <p className='text-gray-500'>No hay productos todavía.</p>
-            )}
-            <hr />
+            <section className='flex flex-wrap gap-4'>
+              {productsPurchased?.length > 0 ? (
+                productsPurchased.map((product) => {
+                  return (
+                    <PurchasedItem
+                      key={product}
+                      title={product.title}
+                      description={product.description}
+                      img={product.imageUrl}
+                    />
+                  );
+                })
+              ) : (
+                <p className='text-gray-500'>No hay productos todavía.</p>
+              )}
+            </section>
+            <hr className='p-4' />
             {servicesPurchased?.length > 0 ? (
               servicesPurchased.map((product) => {
                 return (
-                  <li key={product} className='font-common-font'>
-                    {product}
-                  </li>
+                  <PurchasedService
+                    key={product}
+                    title={product.title}
+                    description={product.description}
+                  />
                 );
               })
             ) : (
